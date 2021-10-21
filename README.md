@@ -2,8 +2,8 @@
  ## How to Use
  
 ### On Local machine
-1. First, we need to start the application using `$ mvn spring-boot:run` in terminal.
-2. Then, use `$ curl http://localhost:8080/*function_name*` (example `mockSensoAPI`).
+1. First, we need to start the application using `./mvnw spring-boot:run` in terminal.
+2. Then, use `curl http://localhost:8080/*function_name*` (example `mockSensoAPI`).
 3. Go to http://localhost:8080/function_name on browser of choice.
 
 ### On Elastic Beanstalk
