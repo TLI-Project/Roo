@@ -9,7 +9,7 @@ Senso Education makes the car-purchasing system much simpler by providing client
 ## tech stack
 ### frontend
 We are going to be handling the frontend of Senso Education through React using HTML, CSS, SCSS, and JS. This is because we feel that ...
-> "I'm a massive React fan. Really big fan personally"
+> "I'm a massive React fan. Really big fan personally" - Joanne
 ### backend
 The backend of Senso Education will be built in Java with the Spring Boot framework to allow for easier integration between all of our different componenets. This was discovered out of necessity and talking with other groups. We spent a while trying to integrate the backend to the frontend without a framework like Spring with no success and heard lots of good things about Spring (also very well documented).
 > "This is going to be very fun to do using Java. If you look here, (send one line of code), connecting to an API using python is very simple compared to Java (after spending 4hrs trying to connect to the API)." - Antoine
