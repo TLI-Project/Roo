@@ -1,5 +1,19 @@
 # roo
+ ## How to Use
  
+### On Local machine
+1. First, we need to start the application using `$ mvn spring-boot:run` in terminal.
+2. Then, use `$ curl http://localhost:8080/*function_name*` (example `mockSensoAPI`).
+3. Go to http://localhost:8080/function_name on browser of choice.
+
+### On Elastic Beanstalk
+1. First, we need to execute a .jar file that the server can read using `$ ./mvnw package -DskipTests`
+2. Navigate to the Piglet-env in Elastic Beanstalk (using login information) and click 'upload and deploy'
+3. Select choose file and navigate to `.../roo/target/*version_name*.jar`.
+4. Click deploy. It will take a few minutes and then be done.
+
+
+ ***
 Senso.ai introduces Senso Education, a new web application that helps car-buyers make more informed decisions about their vehicle purchases, as well as the features they choose to include, allowing them to walk away with more time and more money in their pockets. Senso Education takes information from buyers which includes their credit score, preferred vehicle, income, budget, etc. The framework then provides a display of monthly payments of the vehicle in comparison to other vehicles the buyer is interested in, and provides a list of popular features car dealerships offer in addition to data displaying how many car-buyers typically get those features, all within the short timespan of five minutes.
 ### the problem
 In the auto sector, customers dread facing the salesmen constantly trying to bend them towards spending more money, without educating them on what they are being influenced to purchase. The upselling efforts of the salesmen often result in customers not being able to afford their dream car in the end. The tedious journey of going through one dealership after another only to find out that they are not eligible for a loan on their dream car makes this process extremely inconvenient and unnecessarily complicated.
@@ -20,3 +34,4 @@ We are using mySQL because of SQL's relationship features since we will need the
 ### hosting
 We deployed the Frontend on AWS Amplify. We felt that Amplify was a very approachable platform to host our frontend because of its ease of use (kinda one click and its done and automatically keeps updated with the GitHub repository). We choose AWS Elastic Beanstalk because the abstraction of being able to use multiple CE2's was interesting and something we felt would be useful for future work (not likely that we will use it for this project). Further, it had easy server configuration and was free unlike many of the alternatives we researched (Opalstack, Firebase (functions)). Finally, we are hosting our database on AWS RDS. At this point we had become very familiar with the AWS hosting platforms and RDS allowed us to use our databse of choice (mySQL) and was free and easy to set up.
 ***
+
