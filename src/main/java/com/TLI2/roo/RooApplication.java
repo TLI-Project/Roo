@@ -13,6 +13,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class RooApplication {
 
 	public static void main(String[] args) {
+		Database db = new Database();
+		db.createDatabase();
+
 		SpringApplication.run(RooApplication.class, args);
 	}
 
