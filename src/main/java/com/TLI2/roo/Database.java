@@ -11,6 +11,14 @@ public class Database {
     public static String password = "WinnieThePooh!";
 
     public void createDatabase() {
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            System.out.println("Driver loaded!");
+        } catch (ClassNotFoundException e) {
+            throw new IllegalStateException("Cannot find the driver in the classpath!", e);
+        }
+
         try {
             Connection conn = DriverManager.getConnection(url, username, password);
             System.out.println("Connected :)");
