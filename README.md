@@ -12,6 +12,9 @@
 3. Select choose file and navigate to `.../roo/target/*version_name*.jar`.
 4. Click deploy. It will take a few minutes and then be done.
 
+### Connection with the database 
+1. Should be connected and nothing you need to do.
+2. Check links document for the endpoint and username/password combo.
 
  ***
 Senso.ai introduces Senso Education, a new web application that helps car-buyers make more informed decisions about their vehicle purchases, as well as the features they choose to include, allowing them to walk away with more time and more money in their pockets. Senso Education takes information from buyers which includes their credit score, preferred vehicle, income, budget, etc. The framework then provides a display of monthly payments of the vehicle in comparison to other vehicles the buyer is interested in, and provides a list of popular features car dealerships offer in addition to data displaying how many car-buyers typically get those features, all within the short timespan of five minutes.
