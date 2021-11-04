@@ -6,17 +6,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Database {
-    public static String url = "jdbc:mysql://eeyore.cjvinftl7gsm.us-east-2.rds.amazonaws.com:3306";
-    public static String username = "winnie";
+    public static String url = "jdbc:mysql://aa1cma7c5gq1xq9.cjvinftl7gsm.us-east-2.rds.amazonaws.com:3306";
+    public static String username = "admin";
     public static String password = "WinnieThePooh!";
 
     public void createDatabase() {
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            System.out.println("Driver loaded!");
+            System.out.println("Driver loaded :)");
         } catch (ClassNotFoundException e) {
-            throw new IllegalStateException("Cannot find the driver in the classpath!", e);
+            throw new IllegalStateException("Can't find driver :('", e);
         }
 
         try {
