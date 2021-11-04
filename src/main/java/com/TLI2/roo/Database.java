@@ -71,6 +71,15 @@ public class Database {
                     "PRIMARY KEY (dealership_id)) " +
                     "DEFAULT CHARSET=utf8";
             stmt.execute(dealership);
+
+            String user = "CREATE TABLE IF NOT EXISTS user " +
+                    "(user_id int(10) NOT NULL AUTO_INCREMENT, " +
+                    "name varchar(50) NOT NULL, " +
+                    "username varchar(50) NOT NULL, " +
+                    "password varchar(50) NOT NULL, " +
+                    "PRIMARY KEY (user_id)) " +
+                    "DEFAULT CHARSET=utf8";
+            stmt.execute(user);
         } catch (SQLException e) {
             throw new IllegalStateException("Can't connect :(", e);
         }
