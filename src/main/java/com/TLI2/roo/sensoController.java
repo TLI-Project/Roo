@@ -53,7 +53,9 @@ public class sensoController {
                 "   \"vehicleMake\": \"Honda\",\n" +
                 "   \"vehicleModel\": \"Civic\",\n" +
                 "   \"vehicleYear\": 2021,\n" +
-                "   \"vehicleKms\": 1000\n" +
+                "   \"vehicleKms\": 1000,\n" +
+                "   \"listPrice\": " + inputs[5] + ",\n" +
+                "   \"downpayment\": " + inputs[6] + "\n" +
                 "}";
         return inputJson;
     }
@@ -64,6 +66,6 @@ public class sensoController {
      * TODO make the API key not hard coded? Security risk.
      */
     public static String[] mockInputs(){
-        return new String[]{"winnie", "10000", "780", "400", "AIzaSyCD_-qCdXqrvWGHN1tpe2PH6Rf8zpnTdXs"};
+        return new String[]{"w", "42000", "780", "800", "AIzaSyCD_-qCdXqrvWGHN1tpe2PH6Rf8zpnTdXs", "50000", "8000"};
     }
 }
