@@ -39,6 +39,25 @@ public class sensoController {
         return response.body();
     }
 
+    public static String getAPIInputs(String inputs) throws IOException, InterruptedException {
+
+        var request = HttpRequest.newBuilder()
+                .uri(URI.create("https://auto-loan-api.senso.ai/rate"))
+                .header("Content-Type", "application/json")
+                .header("x-api-key", "AIzaSyCD_-qCdXqrvWGHN1tpe2PH6Rf8zpnTdXs")
+                .POST(HttpRequest.BodyPublishers.ofString(inputs))
+                .build();
+
+        var client = HttpClient.newHttpClient();
+
+        var response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+        System.out.println(response.statusCode());
+        System.out.println(response.body());
+
+        return response.body();
+    }
+
     /**
      * Turn the user inputs into a format that the Senso API call can carry out.
      *
@@ -66,6 +85,6 @@ public class sensoController {
      * TODO make the API key not hard coded? Security risk.
      */
     public static String[] mockInputs(){
-        return new String[]{"w", "42000", "780", "800", "AIzaSyCD_-qCdXqrvWGHN1tpe2PH6Rf8zpnTdXs", "50000", "8000"};
+        return new String[]{"w", "6000", "790", "900", "AIzaSyCD_-qCdXqrvWGHN1tpe2PH6Rf8zpnTdXs", "12000", "6000"};
     }
 }
