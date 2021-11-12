@@ -1,4 +1,4 @@
-package com.TLI2.roo;
+package Database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
