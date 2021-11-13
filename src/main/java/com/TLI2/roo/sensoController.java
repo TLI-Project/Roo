@@ -10,9 +10,6 @@ import java.net.http.HttpResponse;
  * Everything needed to talk to the Senso API.
  */
 public class sensoController {
-
-
-
     /**
      * The function that actually pings the API /rate calculation.
      * @param inputs is in the form [username, loanAmount, creditScore, pytBudget, API key]

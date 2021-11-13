@@ -1,4 +1,4 @@
-package inputAdapter;
+package adapters;
 
 import entities.User;
 import org.junit.jupiter.api.Test;

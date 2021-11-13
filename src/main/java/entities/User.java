@@ -1,6 +1,7 @@
 package entities;
 
 import inputAdapter.InputAdapter;
+import inputAdapter.KeyAdapter;
 
 public class User extends Entity{
     /**
@@ -10,6 +11,7 @@ public class User extends Entity{
     private String inputs;
     private String username;
     private String password;
+    private String APIkey;
 
     /**
      * Initialize a new user with the give username/password combo.
@@ -35,6 +37,18 @@ public class User extends Entity{
      */
     public void setInputs(String[] UserInputs) {
         this.inputs = InputAdapter.convertInputs(UserInputs);
+    }
+
+    /**
+     * Get the API key associated with the user.
+     * @return a string of the API key
+     */
+    public String getAPIkey(){
+        return this.APIkey;
+    }
+
+    public void setAPIkey(String[] UserInputs){
+        this.APIkey = KeyAdapter.convertKey(UserInputs);
     }
 
     /**
