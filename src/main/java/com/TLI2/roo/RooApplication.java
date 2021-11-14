@@ -1,5 +1,6 @@
 package com.TLI2.roo;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -28,7 +29,7 @@ public class RooApplication {
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
-			public void addCorsMappings(CorsRegistry registry) {
+			public void addCorsMappings(@NotNull CorsRegistry registry) {
 				registry.addMapping("/**")
 						.allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH");
 			}

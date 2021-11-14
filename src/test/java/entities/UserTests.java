@@ -1,11 +1,10 @@
-package com.TLI2.roo;
+package entities;
 
-import entities.User;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class EntityTests {
+public class UserTests {
 
     /**
      * Test that construction of a User works as intended.

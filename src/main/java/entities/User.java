@@ -3,15 +3,18 @@ package entities;
 import inputAdapter.InputAdapter;
 import inputAdapter.KeyAdapter;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class User extends Entity{
     /**
      * An entity representing a user of Senso Education.
      */
-
     private String inputs;
     private String username;
     private String password;
     private String APIkey;
+    private final Map<Car, LoanResponse> loanOptions;
 
     /**
      * Initialize a new user with the give username/password combo.
@@ -21,6 +24,24 @@ public class User extends Entity{
     public User(String username, String password){
         this.username = username;
         this.password = password;
+        this.loanOptions = new HashMap<>();
+    }
+
+    /**
+     * Add a car/loan pair into the users interested loans.
+     * @param car is the car the user is interested in.
+     * @param sensoApiResponse is their loan response for that given car.
+     */
+    public void setLoanOptions(Car car, LoanResponse sensoApiResponse){
+        loanOptions.put(car, sensoApiResponse);
+    }
+
+    /**
+     * Get the user's loan response
+     * @return a map of all the car/loan pairs for the given user
+     */
+    public Map<Car, LoanResponse> getLoanOptions(){
+        return this.loanOptions;
     }
 
     /**
