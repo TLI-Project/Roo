@@ -1,4 +1,4 @@
-package inputAdapter;
+package adapters;
 
 public interface InputAdapter {
 

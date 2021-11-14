@@ -1,6 +1,5 @@
 package entities;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public class Car extends Entity{
@@ -9,15 +8,15 @@ public class Car extends Entity{
     private final double listPrice;
     private final int year;
     private final double kms;
-    private Map<String, Feature> features;
+    private final Map<String, Feature> features;
 
-    public Car(String carModel, String carMake, double listPrice, int year, double kms) {
+    public Car(String carModel, String carMake, double listPrice, int year, double kms, Map<String, Feature> features) {
         this.carModel = carModel;
         this.carMake = carMake;
         this.listPrice = listPrice;
         this.year = year;
         this.kms = kms;
-        this.features = new HashMap<>();
+        this.features = features;
     }
 
     public Map<String, Feature> getFeatures(){
@@ -50,6 +49,6 @@ public class Car extends Entity{
 
     @Override
     public String getEntityStr() {
-        return "car model:" + this.carModel + "car make:" + this.carMake;
+        return "Car Model: " + this.carModel + ", Car Make: " + this.carMake;
     }
 }

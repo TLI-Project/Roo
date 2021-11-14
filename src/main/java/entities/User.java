@@ -1,7 +1,7 @@
 package entities;
 
-import inputAdapter.InputAdapter;
-import inputAdapter.KeyAdapter;
+import adapters.InputAdapter;
+import adapters.KeyAdapter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,8 +11,8 @@ public class User extends Entity{
      * An entity representing a user of Senso Education.
      */
     private String inputs;
-    private String username;
-    private String password;
+    private final String username;
+    private final String password;
     private String APIkey;
     private final Map<Car, LoanResponse> loanOptions;
 
@@ -88,21 +88,21 @@ public class User extends Entity{
         return password;
     }
 
-    /**
-     * Change the user's username.
-     * @param username a string of the new username.
-     */
-    public void setUsername(String username) {
-        this.username = username;
-    }
+//    /**
+//     * Change the user's username.
+//     * @param username a string of the new username.
+//     */
+//    public void setUsername(String username) {
+//        this.username = username;
+//    }
 
-    /**
-     * Change the user's password.
-     * @param password a string of the new password.
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
+//    /**
+//     * Change the user's password.
+//     * @param password a string of the new password.
+//     */
+//    public void setPassword(String password) {
+//        this.password = password;
+//    }
 
     /**
      * Return a representation of the User entity
@@ -110,6 +110,6 @@ public class User extends Entity{
      */
     @Override
     public String getEntityStr() {
-        return "Username: " + this.username + "Password: " + this.password;
+        return "Username: " + this.username + ", Password: " + this.password;
     }
 }

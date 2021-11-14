@@ -25,6 +25,6 @@ public class Feature extends Entity{
 
     @Override
     public String getEntityStr() {
-        return null;
+        return "Name: " + this.name + ", Description: " + this.description;
     }
 }
