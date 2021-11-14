@@ -1,5 +1,6 @@
 package controllers;
 
+import entities.Car;
 import entities.User;
 
 import java.io.IOException;
@@ -10,7 +11,15 @@ import java.net.http.HttpResponse;
 
 public class sensoAPIController {
 
-    public static String getAPI(User user) throws IOException, InterruptedException {
+    /**
+     * Ping the senso API with the for a user/car pairing.
+     * @param user the user looking at cars
+     * @param car the car the user is looking at
+     * @return the Senso response of the loan data
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    public static String getUserCarLoan(User user, Car car) throws IOException, InterruptedException {
 
         String inputJson = user.getInputs();
 

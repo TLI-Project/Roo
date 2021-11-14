@@ -1,6 +1,5 @@
 package entities;
 
-import adapters.InputAdapter;
 import adapters.KeyAdapter;
 
 import java.util.HashMap;
@@ -10,7 +9,10 @@ public class User extends Entity{
     /**
      * An entity representing a user of Senso Education.
      */
-    private String inputs;
+    private double loanAmount;
+    private int creditScore;
+    private double pytBudget;
+    private double downpayment;
     private final String username;
     private final String password;
     private String APIkey;
@@ -28,6 +30,70 @@ public class User extends Entity{
     }
 
     /**
+     * Get the loan amount the user is willing to pay.
+     * @return loan amount.
+     */
+    public double getLoanAmount(){
+        return this.loanAmount;
+    }
+
+    /**
+     * Set the user's loan amount.
+     * @param loanAmount loan amount input by user.
+     */
+    public void setLoanAmount(double loanAmount){
+        this.loanAmount = loanAmount;
+    }
+
+    /**
+     * Get the credit score of the user.
+     * @return the user's credit score (0 - 800)
+     */
+    public int getCreditScore(){
+        return this.creditScore;
+    }
+
+    /**
+     * TODO make this happen 'fake' automatically
+     * @param creditScore the user's credit score.
+     */
+    public void setCreditScore(int creditScore){
+        this.creditScore = creditScore;
+    }
+
+    /**
+     * Get the monthly payment budget the user is comftorable paying.
+     * @return monthly payment budget
+     */
+    public double getPytBudget(){
+        return this.pytBudget;
+    }
+
+    /**
+     * Set the user's payment budget
+     * @param pytBudget monthly payment budget.
+     */
+    public void setPytBudget(double pytBudget){
+        this.pytBudget = pytBudget;
+    }
+
+    /**
+     * Get the money the user is willing to pay up front for a car.
+     * @return the down payment
+     */
+    public double getDownpayment(){
+        return this.downpayment;
+    }
+
+    /**
+     * Set the user's downpayment.
+     * @param downpayment the user's downpayment.
+     */
+    public void setDownpayment(double downpayment){
+        this.downpayment = downpayment;
+    }
+
+    /**
      * Add a car/loan pair into the users interested loans.
      * @param car is the car the user is interested in.
      * @param sensoApiResponse is their loan response for that given car.
@@ -42,22 +108,6 @@ public class User extends Entity{
      */
     public Map<Car, LoanResponse> getLoanOptions(){
         return this.loanOptions;
-    }
-
-    /**
-     * Get the user's inputs.
-     * @return an array of the users inputs.
-     */
-    public String getInputs() {
-        return this.inputs;
-    }
-
-    /**
-     * Set the user's inputs.
-     * @param UserInputs is the user data from inputted into the frontend.
-     */
-    public void setInputs(String[] UserInputs) {
-        this.inputs = InputAdapter.convertInputs(UserInputs);
     }
 
     /**
