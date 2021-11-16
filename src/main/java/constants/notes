@@ -1,7 +1,0 @@
-UserData format: {
-"username": String username,
-"loanAmount": double loanAmount,
-"creditScore": int creditScore,
-"pytBudget": double pytBudget,
-"downpayment": double downpayment
-}

@@ -1,7 +1,5 @@
 package entities;
 
-import adapters.KeyAdapter;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +13,6 @@ public class User extends Entity{
     private double downpayment;
     private final String username;
     private final String password;
-    private String APIkey;
     private final Map<Car, LoanResponse> loanOptions;
 
     /**
@@ -109,19 +106,6 @@ public class User extends Entity{
     public Map<Car, LoanResponse> getLoanOptions(){
         return this.loanOptions;
     }
-
-    /**
-     * Get the API key associated with the user.
-     * @return a string of the API key
-     */
-    public String getAPIkey(){
-        return this.APIkey;
-    }
-
-    public void setAPIkey(String[] UserInputs){
-        this.APIkey = KeyAdapter.convertKey(UserInputs);
-    }
-
     /**
      * Get the user's name.
      * @return a string of the inputted username.
@@ -137,22 +121,6 @@ public class User extends Entity{
     public String getPassword() {
         return password;
     }
-
-//    /**
-//     * Change the user's username.
-//     * @param username a string of the new username.
-//     */
-//    public void setUsername(String username) {
-//        this.username = username;
-//    }
-
-//    /**
-//     * Change the user's password.
-//     * @param password a string of the new password.
-//     */
-//    public void setPassword(String password) {
-//        this.password = password;
-//    }
 
     /**
      * Return a representation of the User entity

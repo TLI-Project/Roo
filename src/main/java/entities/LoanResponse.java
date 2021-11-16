@@ -3,7 +3,7 @@ package entities;
 /**
  * The response given by the Senso API.
  */
-public class LoanResponse {
+public class LoanResponse extends Entity {
     private final double amount;
     private final double interestSum;
     private final double capitalSum;
@@ -87,5 +87,10 @@ public class LoanResponse {
      */
     public String[] getInstallments(){
         return this.installments;
+    }
+
+    @Override
+    public String getEntityStr() {
+        return "Sum for LoanResponse: " + this.sum;
     }
 }

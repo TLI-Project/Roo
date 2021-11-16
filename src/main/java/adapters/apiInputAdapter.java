@@ -3,7 +3,7 @@ package adapters;
 import entities.Car;
 import entities.User;
 
-public interface ApiInputAdapter {
+public interface apiInputAdapter {
 
     static String makeInputJSON(User user, Car car){
         return apiReadyInput(user, car);
@@ -20,8 +20,8 @@ public interface ApiInputAdapter {
                 "   \"loanAmount\": " + user.getLoanAmount() + ",\n" +
                 "   \"creditScore\": " + user.getCreditScore() + ",\n" +
                 "   \"pytBudget\": " + user.getPytBudget() + ",\n" +
-                "   \"vehicleMake\": " + car.getCarMake() + ",\n" +
-                "   \"vehicleModel\": " + car.getCarModel() + ",\n" +
+                "   \"vehicleMake\": \"" + car.getCarMake() + "\",\n" +
+                "   \"vehicleModel\": \"" + car.getCarModel() + "\",\n" +
                 "   \"vehicleYear\": " + car.getYear() + ",\n" +
                 "   \"vehicleKms\": " + car.getKms() + ",\n" +
                 "   \"listPrice\": " + car.getListPrice() + ",\n" +

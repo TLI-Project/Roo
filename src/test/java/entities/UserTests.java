@@ -20,27 +20,17 @@ public class UserTests {
     }
 
     @Test
-    public void whenSettingUserInputs(){
+    public void whenSettersAndGetters() {
         User Christopher = new User("Christopher", "password");
-        Christopher.setInputs(new String[]{Christopher.getUsername(), "1", "2", "3", "API-key", "5", "6"});
-        assertEquals(Christopher.getInputs(), "{\n" +
-                "   \"loanAmount\": 1,\n" +
-                "   \"creditScore\": 2,\n" +
-                "   \"pytBudget\": 3,\n" +
-                "   \"vehicleMake\": \"Honda\",\n" +
-                "   \"vehicleModel\": \"Civic\",\n" +
-                "   \"vehicleYear\": 2021,\n" +
-                "   \"vehicleKms\": 1000,\n" +
-                "   \"listPrice\": 5,\n" +
-                "   \"downpayment\": 6\n" +
-                "}");
-    }
+        Christopher.setDownpayment(1000);
+        Christopher.setPytBudget(400);
+        Christopher.setCreditScore(780);
+        Christopher.setLoanAmount(20000);
 
-    @Test
-    public void whenSettingAPIKey(){
-        User Christopher = new User("Christopher", "Password");
-        Christopher.setAPIkey(new String[]{Christopher.getUsername(), "1", "2", "3", "API-key", "5", "6"});
-        assertEquals(Christopher.getAPIkey(), "API-key");
+        assertEquals(Christopher.getDownpayment(), 1000);
+        assertEquals(Christopher.getPytBudget(), 400);
+        assertEquals(Christopher.getCreditScore(), 780);
+        assertEquals(Christopher.getLoanAmount(), 20000);
     }
 
     @Test

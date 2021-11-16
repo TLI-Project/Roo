@@ -23,7 +23,6 @@ public class RooApplication {
 	/**
 	 * Fixes the cors issue that we were running into.
 	 * @return WebMvcConfigurer
-	 * TODO not sure how this method works but it does it's job. Look into it and document better.
 	 */
 	@Bean // fix cors error
 	public WebMvcConfigurer corsConfigurer() {
