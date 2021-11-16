@@ -11,6 +11,7 @@ public class User extends Entity{
     private int creditScore;
     private double pytBudget;
     private double downpayment;
+    private String fullname;
     private final String username;
     private final String password;
     private final Map<Car, LoanResponse> loanOptions;
@@ -34,6 +35,21 @@ public class User extends Entity{
         return this.loanAmount;
     }
 
+    /**
+     * Set the users full name
+     * @param fullname is the user's full name
+     */
+    public void setFullname(String fullname){
+        this.fullname = fullname;
+    }
+
+    /**
+     * Get the user's full name
+     * @return a String of the user's name
+     */
+    public String getFullname() {
+        return this.fullname;
+    }
     /**
      * Set the user's loan amount.
      * @param loanAmount loan amount input by user.
