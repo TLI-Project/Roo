@@ -1,10 +1,8 @@
 package App;
 
-<<<<<<< HEAD:src/main/java/com/TLI2/roo/RooApplication.java
-import org.jetbrains.annotations.NotNull;
-=======
+
+//import org.jetbrains.annotations.NotNull;
 import Database.Database;
->>>>>>> main:src/main/java/App/RooApplication.java
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
