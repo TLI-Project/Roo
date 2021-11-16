@@ -1,5 +1,7 @@
 package App;
 
+
+//import org.jetbrains.annotations.NotNull;
 import Database.Database;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,13 +25,12 @@ public class RooApplication {
 	/**
 	 * Fixes the cors issue that we were running into.
 	 * @return WebMvcConfigurer
-	 * TODO not sure how this method works but it does it's job. Look into it and document better.
 	 */
 	@Bean // fix cors error
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
-			public void addCorsMappings(CorsRegistry registry) {
+			public void addCorsMappings(@NotNull CorsRegistry registry) {
 				registry.addMapping("/**")
 						.allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH");
 			}

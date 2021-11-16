@@ -1,0 +1,6 @@
+financialData format: {
+loanAmount: double,
+creditScore: int,
+pytBudget: double,
+downpayment: double
+}

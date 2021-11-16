@@ -10,7 +10,6 @@ import java.net.http.HttpResponse;
  * Everything needed to talk to the Senso API.
  */
 public class sensoController {
-
     /**
      * The function that actually pings the API /rate calculation.
      * @param inputs is in the form [username, loanAmount, creditScore, pytBudget, API key]
@@ -39,6 +38,14 @@ public class sensoController {
         return response.body();
     }
 
+    /**
+     * Ping the Senso API with the given inputs passed through
+     *
+     * @param inputs taken from the User Data
+     * @return the Senso API json
+     * @throws IOException TODO dont know why this is
+     * @throws InterruptedException TODO dont know why this is
+     */
     public static String getAPIInputs(String inputs) throws IOException, InterruptedException {
 
         var request = HttpRequest.newBuilder()
