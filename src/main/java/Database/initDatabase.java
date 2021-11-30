@@ -11,46 +11,44 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Takes care of initializing the database with the necessary dataset.
+ */
 public class initDatabase {
 
+    /**
+     * Call all the commands to create the database and dataset.
+     * @param conn is the connection to the RDS server.
+     */
     public static void main(Connection conn) {
         try {
             makeDatabase(conn);
             carTable(conn);
-            bankTable(conn);
-            dealershipTable(conn);
-            userTable(conn);
             writeToCarTable(conn, "data/sensoCarSet.csv");
         } catch (SQLException | IOException e) {
             throw new IllegalStateException("Can't create :(", e);
         }
     }
 
+    /**
+     * Makes the and sets the sensoCarData database
+     * @param conn connection to the RDS server
+     * @throws SQLException
+     */
     private static void makeDatabase(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
 
-        String create_db = "CREATE DATABASE IF NOT EXISTS auto_education";
+        String create_db = "CREATE DATABASE IF NOT EXISTS sensoCarData";
         stmt.execute(create_db);
-        stmt.execute("USE auto_education");
-
-        String client_table = "CREATE TABLE IF NOT EXISTS client " +
-                "(client_id int(10) NOT NULL AUTO_INCREMENT, " +
-                "first_name varchar(50) NOT NULL, " +
-                "last_name varchar(50) NOT NULL, " +
-                "email varchar(100) NOT NULL, " +
-                "street_address varchar(100) NOT NULL, " +
-                "city varchar(100) NOT NULL, " +
-                "province varchar(100) NOT NULL, " +
-                "credit_score int(3) NOT NULL, " +
-                "preferred_vehicle int(10) NOT NULL, " +
-                "income int(10) NOT NULL, " +
-                "budget int(10) NOT NULL, " +
-                "PRIMARY KEY (client_id)) " +
-                "DEFAULT CHARSET=utf8";
-        stmt.execute(client_table);
+        stmt.execute("USE sensoCarData");
         stmt.close();
     }
 
+    /**
+     * Makes the carTable with its required columns.
+     * @param conn connection to the RDS server
+     * @throws SQLException
+     */
     private static void carTable(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
 
@@ -75,43 +73,6 @@ public class initDatabase {
         stmt.close();
     }
 
-    private static void bankTable(Connection conn) throws SQLException {
-        Statement stmt = conn.createStatement();
-
-        String bank = "CREATE TABLE IF NOT EXISTS bank " +
-                "(bank_id int(10) NOT NULL AUTO_INCREMENT, " +
-                "name varchar(50) NOT NULL, " +
-                "PRIMARY KEY (bank_id)) " +
-                "DEFAULT CHARSET=utf8";
-        stmt.execute(bank);
-        stmt.close();
-    }
-
-    private static void dealershipTable(Connection conn) throws SQLException {
-        Statement stmt = conn.createStatement();
-
-        String dealership = "CREATE TABLE IF NOT EXISTS dealership " +
-                "(dealership_id int(10) NOT NULL AUTO_INCREMENT, " +
-                "name varchar(50) NOT NULL, " +
-                "PRIMARY KEY (dealership_id)) " +
-                "DEFAULT CHARSET=utf8";
-        stmt.execute(dealership);
-        stmt.close();
-    }
-
-    private static void userTable(Connection conn) throws SQLException {
-        Statement stmt = conn.createStatement();
-
-        String user = "CREATE TABLE IF NOT EXISTS user " +
-                "(user_id int(10) NOT NULL AUTO_INCREMENT, " +
-                "name varchar(50) NOT NULL, " +
-                "username varchar(50) NOT NULL, " +
-                "password varchar(50) NOT NULL, " +
-                "PRIMARY KEY (user_id)) " +
-                "DEFAULT CHARSET=utf8";
-        stmt.execute(user);
-        stmt.close();
-    }
 
     private static void writeToCarTable(Connection conn, String filePath) throws SQLException, IOException {
         String insert = "INSERT INTO car " +
