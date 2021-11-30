@@ -22,9 +22,9 @@ public class sensoController {
         String inputJson = getInputJson(inputs);
 
         var request = HttpRequest.newBuilder()
-                .uri(URI.create("https://auto-loan-api.senso.ai/rate"))
+                .uri(URI.create(System.getenv("SENSO_URL")))
                 .header("Content-Type", "application/json")
-                .header("x-api-key", inputs[4])
+                .header("x-api-key", System.getenv("SENSO_KEY"))
                 .POST(HttpRequest.BodyPublishers.ofString(inputJson))
                 .build();
 
@@ -49,9 +49,9 @@ public class sensoController {
     public static String getAPIInputs(String inputs) throws IOException, InterruptedException {
 
         var request = HttpRequest.newBuilder()
-                .uri(URI.create("https://auto-loan-api.senso.ai/rate"))
+                .uri(URI.create(System.getenv("SENSO_URL")))
                 .header("Content-Type", "application/json")
-                .header("x-api-key", "AIzaSyCD_-qCdXqrvWGHN1tpe2PH6Rf8zpnTdXs")
+                .header("x-api-key", System.getenv("SENSO_KEY"))
                 .POST(HttpRequest.BodyPublishers.ofString(inputs))
                 .build();
 
@@ -72,7 +72,7 @@ public class sensoController {
      * @return a JSON file that the Senso API can handle.
      */
     private static String getInputJson(String[] inputs) {
-        String inputJson = "{\n" +
+        return "{\n" +
                 "   \"loanAmount\": " + inputs[1] + ",\n" +
                 "   \"creditScore\": " + inputs[2] + ",\n" +
                 "   \"pytBudget\": " + inputs[3] + ",\n" +
@@ -83,7 +83,6 @@ public class sensoController {
                 "   \"listPrice\": " + inputs[5] + ",\n" +
                 "   \"downpayment\": " + inputs[6] + "\n" +
                 "}";
-        return inputJson;
     }
 
     /**
