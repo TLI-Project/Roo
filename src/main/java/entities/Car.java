@@ -1,16 +1,22 @@
 package entities;
 
+import java.sql.Array;
 import java.util.Map;
 
 /**
  * A car the user can buy.
  */
 public class Car extends Entity{
-    private final String carModel;
+    private final int id;
     private final String carMake;
+    private final String carModel;
     private final double listPrice;
     private final int year;
     private final double kms;
+    private final String color;
+    private final String condition;
+    private final Array depreciation;
+    private final String imageURL;
     private final Map<String, Feature> features;
 
     /**
@@ -22,12 +28,17 @@ public class Car extends Entity{
      * @param kms the kilometers on the car.
      * @param features a list of features the car might have.
      */
-    public Car(String carModel, String carMake, double listPrice, int year, double kms, Map<String, Feature> features) {
+    public Car(int id, String carMake, String carModel, double listPrice, int year, double kms, String color, String condition, Array depreciation, String imageURL, Map<String, Feature> features) {
+        this.id = id;
         this.carModel = carModel;
         this.carMake = carMake;
         this.listPrice = listPrice;
         this.year = year;
         this.kms = kms;
+        this.color = color;
+        this.condition = condition;
+        this.depreciation = depreciation;
+        this.imageURL = imageURL;
         this.features = features;
     }
 

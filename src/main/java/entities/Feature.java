@@ -5,18 +5,15 @@ package entities;
  */
 public class Feature extends Entity{
     private final String name;
-    private final double price;
     private final String description;
 
     /**
      * Construct a new feature.
      * @param name the features name.
-     * @param price the price of adding the feature to a car.
      * @param description what the feature does.
      */
-    public Feature(String name, double price, String description) {
+    public Feature(String name, String description) {
         this.name = name;
-        this.price = price;
         this.description = description;
     }
 
@@ -26,14 +23,6 @@ public class Feature extends Entity{
      */
     public String getDescription(){
         return this.description;
-    }
-
-    /**
-     * Get the price of the car
-     * @return a double representing the price of the feature.
-     */
-    public double getPrice(){
-        return this.price;
     }
 
     /**
