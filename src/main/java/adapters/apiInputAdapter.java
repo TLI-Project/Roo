@@ -20,11 +20,11 @@ public interface apiInputAdapter {
                 "   \"loanAmount\": " + user.getLoanAmount() + ",\n" +
                 "   \"creditScore\": " + user.getCreditScore() + ",\n" +
                 "   \"pytBudget\": " + user.getPytBudget() + ",\n" +
-                "   \"vehicleMake\": \"" + car.getCarMake() + "\",\n" +
-                "   \"vehicleModel\": \"" + car.getCarModel() + "\",\n" +
-                "   \"vehicleYear\": " + car.getYear() + ",\n" +
-                "   \"vehicleKms\": " + car.getKms() + ",\n" +
-                "   \"listPrice\": " + car.getListPrice() + ",\n" +
+                "   \"vehicleMake\": \"" + car.carMake + "\",\n" +
+                "   \"vehicleModel\": \"" + car.carModel + "\",\n" +
+                "   \"vehicleYear\": " + car.year + ",\n" +
+                "   \"vehicleKms\": " + car.kms + ",\n" +
+                "   \"listPrice\": " + car.listPrice + ",\n" +
                 "   \"downpayment\": " + user.getDownpayment() + "\n" +
                 "}";
     }

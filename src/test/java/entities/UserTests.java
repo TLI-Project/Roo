@@ -33,21 +33,21 @@ public class UserTests {
         assertEquals(Christopher.getLoanAmount(), 20000);
     }
 
-    @Test
-    public void whenSettingLoanOptions(){
-        String[] installments = {"installment1", "installment2"};
-        LoanResponse testLR = new LoanResponse(1, 2, 3, 4,
-                5, 6, installments);
-        Feature rustProofing = new Feature("rust proofing", 1, "it proofs rust");
-        Map<String, Feature> testFeatures = new HashMap<String, Feature>();
-        testFeatures.put(rustProofing.getName(), rustProofing);
-        Car testCar = new Car("model", "make", 10, 2021, 0, testFeatures);
-        User Christopher = new User("Christopher", "Password");
-        Christopher.setLoanOptions(testCar, testLR);
-        Map<Car, LoanResponse> actualLO = new HashMap<>();
-        actualLO.put(testCar, testLR);
-        assertEquals(Christopher.getLoanOptions(), actualLO);
-    }
+//    @Test
+//    public void whenSettingLoanOptions(){
+//        String[] installments = {"installment1", "installment2"};
+//        LoanResponse testLR = new LoanResponse(1, 2, 3, 4,
+//                5, 6, installments);
+//        Feature rustProofing = new Feature("rust proofing", 1, "it proofs rust");
+//        Map<String, Feature> testFeatures = new HashMap<String, Feature>();
+//        testFeatures.put(rustProofing.getName(), rustProofing);
+//        Car testCar = new Car("model", "make", 10, 2021, 0, testFeatures);
+//        User Christopher = new User("Christopher", "Password");
+//        Christopher.setLoanOptions(testCar, testLR);
+//        Map<Car, LoanResponse> actualLO = new HashMap<>();
+//        actualLO.put(testCar, testLR);
+//        assertEquals(Christopher.getLoanOptions(), actualLO);
+//    }
 
     @Test
     public void whenExtendingEntity(){

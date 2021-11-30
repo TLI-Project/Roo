@@ -9,30 +9,48 @@ public class carSqlDataAccess implements carAccessInterface {
     public String db_url = DB_URL;
     public String db_username = DB_USERNAME;
     public String db_password = DB_PASSWORD;
+//
+//    public static void main(String[] args) {
+//        carSqlDataAccess test = new carSqlDataAccess();
+//        test.getCar(1);
+//    }
 
-
+    /**
+     * Talk with the database to find the correct car.
+     * @param id the ID of the car we are looking for.
+     * @return the car entry from the database.
+     */
     public ResultSet getCar(int id) {
         try{
-            Connection conn = DriverManager.getConnection(db_url, db_username, db_password);
-            Statement stmt = conn.createStatement();
-            stmt.execute("USE sensoCarData");
+            Connection connection = DriverManager.getConnection(db_url, db_username, db_password);
+            Statement statement = connection.createStatement();
+            statement.execute("USE sensoCarData");
 
-            String getCar = "SELECT * FROM car WHERE id = '" + id + "'";
-            return stmt.executeQuery(getCar);
+            String getCar = "SELECT * FROM car WHERE car_id = " + id;
+            ResultSet test = statement.executeQuery(getCar);
+            if(test.next()){
+                System.out.println(test.getString("make"));
+            }
+            return statement.executeQuery(getCar);
         } catch (SQLException e) {
             System.out.println("Failed to get car");
         }
         return null;
     }
 
+    /**
+     *
+     * @return
+     */
     public ResultSet getAllCars() {
         try {
             Connection connection = DriverManager.getConnection(db_url, db_username, db_password);
             Statement statement = connection.createStatement();
             statement.execute("USE sensoCarData");
 
-            String getALlCars = "SELECT * FROM car";
-            return statement.executeQuery(getALlCars);
+            String getAllCars = "SELECT * FROM car";
+
+            return statement.executeQuery(getAllCars);
         }
         catch (SQLException e) {
             System.out.println("Failed to get all cars");
