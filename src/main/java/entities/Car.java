@@ -1,6 +1,5 @@
 package entities;
 
-import java.sql.Array;
 import java.util.Map;
 
 /**
