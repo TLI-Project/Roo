@@ -1,13 +1,15 @@
-package getRequests;
+package App;
 
 import Database.carDataProcess;
 import entities.Car;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
-
-public class getCarData {
+@RestController
+public class ApiController {
     /**
      * Get request that asks for all the cars available.
      * @param test nothing necessary?
@@ -24,10 +26,16 @@ public class getCarData {
      * @param id the ID of the car you are looking for.
      * @return The car entity you are looking for
      */
-    @PostMapping("/cardDetails")
-    public Car carDetails(@RequestBody int id){
+    @PostMapping("/carDetails")
+    public String carDetails(@RequestBody int id){
         carDataProcess carController = new carDataProcess();
-        return carController.getCarById(id);
+        Car temp = carController.getCarById(id);
+        return "{\"working\": \""+temp+"\"}";
+    }
+
+    @GetMapping("/test")
+    public String test(){
+        return "{\"working\": 1}";
     }
 
 }
