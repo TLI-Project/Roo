@@ -14,22 +14,21 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.ArrayList;
 
 public class getUserCarLoan {
 
-    /**
-     * Get request that calls the senso api with car/user pair.
-     * @param user user requesting the loan.
-     * @param car the user is interested in.
-     * @return the senso API data.
-     * @throws IOException
-     * @throws InterruptedException
-     */
-    @PostMapping("/userCarLoan")
-    public String userCarLoan(@RequestBody User user, Car car) throws IOException, InterruptedException {
-        return userCarLoanRequest(user, car);
-    }
+//    /**
+//     * Get request that calls the senso api with car/user pair.
+//     * @param user user requesting the loan.
+//     * @param car the user is interested in.
+//     * @return the senso API data.
+//     * @throws IOException
+//     * @throws InterruptedException
+//     */
+//    @PostMapping("/userCarLoan")
+//    public String userCarLoan(@RequestBody User user, Car car) throws IOException, InterruptedException {
+//        return userCarLoanRequest(user, car);
+//    }
 
     /**
      * Ping the senso API with the for a user/car pairing.
@@ -39,9 +38,9 @@ public class getUserCarLoan {
      * @throws IOException
      * @throws InterruptedException
      */
-    public static String userCarLoanRequest(User user, Car car) throws IOException, InterruptedException {
+    public static String userCarLoanRequest(double loanAmount, int creditScore, double pytBudget, int carID, double downPayment) throws IOException, InterruptedException {
 
-        String inputJson = apiInputAdapter.makeInputJSON(user, car);
+        String inputJson = apiInputAdapter.makeInputJSON(loanAmount, creditScore, pytBudget, carID, downPayment);
 
         var request = HttpRequest.newBuilder()
                 .uri(URI.create(System.getenv("SENSO_URL")))
