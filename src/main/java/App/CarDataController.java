@@ -1,10 +1,10 @@
 package App;
 
-import Controller.sensoController;
 import Database.carDataProcess;
 import adapters.apiInputAdapter;
 import entities.Car;
 import entities.InputData;
+import entities.LoanResponse;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.web.bind.annotation.*;
 
@@ -89,6 +89,10 @@ public class CarDataController {
 
         System.out.println(response.statusCode());
         System.out.println(response.body());
+        String sensoRespones = response.body();
+        LoanResponse responseObj = new LoanResponse(sensoRespones.);
+
+
 
         return response.body();
     }
