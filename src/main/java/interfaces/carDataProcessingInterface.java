@@ -1,4 +1,4 @@
-package Database;
+package interfaces;
 
 import entities.Car;
 

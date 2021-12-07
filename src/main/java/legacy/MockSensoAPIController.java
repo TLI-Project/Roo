@@ -1,6 +1,6 @@
-package Controller;
+package legacy;
 
-//import Controller.sensoController;
+//import legacy.sensoController;
 //import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.RestController;
 //

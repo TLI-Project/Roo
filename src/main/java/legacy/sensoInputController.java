@@ -1,6 +1,7 @@
 //package Controller;
 //
-//import Controller.sensoController;
+//import legacy.sensoController;
+//import legacy.sensoController;
 //import org.springframework.web.bind.annotation.*;
 //
 //import java.io.IOException;
