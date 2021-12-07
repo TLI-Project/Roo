@@ -56,20 +56,20 @@ public class initDatabase {
 
         String car_table = "CREATE TABLE IF NOT EXISTS car " +
                 "(car_id int(10) NOT NULL AUTO_INCREMENT, " +
-                "make varchar(50) NOT NULL, " +
-                "model varchar(50) NOT NULL, " +
-                "carDescription varchar(10000) NOT NULL, " +
+                "make text NOT NULL, " +
+                "model text NOT NULL, " +
+                "carDescription text NOT NULL, " +
                 "listPrice float NOT NULL," +
                 "year int(10) NOT NULL, " +
                 "kms int(10) NOT NULL, " +
-                "color varchar(100) NOT NULL," +
-                "interior varchar(1000) NOT NULL," +
-                "interiorDescription varchar(10000) NOT NULL," +
-                "engine varchar(1000) NOT NULL," +
-                "engineDescription varchar(10000) NOT NULL," +
-                "performancePackage varchar(1000) NOT NULL," +
-                "performancePackageDescription varchar(10000) NOT NULL," +
-                "carCondition varchar(50) NOT NULL," +
+                "color text NOT NULL," +
+                "interior text NOT NULL," +
+                "interiorDescription text NOT NULL," +
+                "engine text NOT NULL," +
+                "engineDescription text NOT NULL," +
+                "performancePackage text NOT NULL," +
+                "performancePackageDescription text NOT NULL," +
+                "carCondition text NOT NULL," +
                 "d1 float NOT NULL," +
                 "d2 float NOT NULL," +
                 "d3 float NOT NULL," +
@@ -80,7 +80,7 @@ public class initDatabase {
                 "d8 float NOT NULL," +
                 "d9 float NOT NULL," +
                 "d10 float NOT NULL," +
-                "image varchar(200) NOT NULL," +
+                "image text NOT NULL," +
                 "PRIMARY KEY (car_id)) " +
                 "DEFAULT CHARSET=utf8";
         stmt.execute(car_table);
