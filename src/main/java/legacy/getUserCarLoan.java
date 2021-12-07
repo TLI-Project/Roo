@@ -1,13 +1,8 @@
-package getRequests;
+package legacy;
 
 // TODO: is this a type of controller?
 
-import Database.carDataProcess;
-import adapters.apiInputAdapter;
-import entities.Car;
-import entities.User;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import interfaces.apiInputAdapter;
 
 import java.io.IOException;
 import java.net.URI;
