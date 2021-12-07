@@ -12,6 +12,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 @RestController
@@ -42,9 +43,19 @@ public class CarDataController {
         return makeCarJSON(car);
     }
 
+
     @PutMapping("/userCarLoan")
     public String userCarLoan(@RequestBody InputData inputData) throws IOException, InterruptedException {
-        return userCarLoanRequest(inputData.loanAmount, inputData.creditScore, inputData.pytBudget, inputData.id, inputData.downpayment);
+        return userCarLoanRequest(inputData.loanAmount, inputData.getCreditScore(), inputData.pytBudget,
+                inputData.carId, inputData.downpayment);
+    }
+
+
+    @PostMapping("/carDepreciation")
+    public ArrayList<Double> carDepreciation(@RequestBody int carId) {
+        carDataProcess carController = new carDataProcess();
+        Car car = carController.getCarById(carId);
+        return car.depreciation;
     }
 
     /**
@@ -66,12 +77,12 @@ public class CarDataController {
                 "   \"condition\": \"" + car.condition + "\",\n" +
                 "   \"depreciation\": " + car.depreciation + ",\n" +
                 "   \"imageURL\": \"" + car.imageURL + "\"\n" +
-                "   \"interior\": \"" + car.features.get("interior").name + "\"\n" +
-                "   \"interiorDescription\": \"" + car.features.get("interior").description + "\"\n" +
-                "   \"engine\": \"" + car.features.get("engine").name + "\"\n" +
-                "   \"engineDescription\": \"" + car.features.get("engine").description + "\"\n" +
-                "   \"performancePackage\": \"" + car.features.get("performancePackage").name + "\"\n" +
-                "   \"performancePackageDescription\": \"" + car.features.get("performancePackage").description + "\"\n" +
+                "   \"interior\": \"" + car.features.get("interior").getName() + "\"\n" +
+                "   \"interiorDescription\": \"" + car.features.get("interior").getDescription() + "\"\n" +
+                "   \"engine\": \"" + car.features.get("engine").getName() + "\"\n" +
+                "   \"engineDescription\": \"" + car.features.get("engine").getDescription() + "\"\n" +
+                "   \"performancePackage\": \"" + car.features.get("performancePackage").getName() + "\"\n" +
+                "   \"performancePackageDescription\": \"" + car.features.get("performancePackage").getDescription() + "\"\n" +
                 "}";
     }
 
@@ -92,7 +103,6 @@ public class CarDataController {
 
         System.out.println(response.statusCode());
         System.out.println(response.body());
-        String sensoRespones = response.body();
 
         return response.body();
     }
