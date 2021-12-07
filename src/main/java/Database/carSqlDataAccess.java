@@ -9,11 +9,7 @@ public class carSqlDataAccess implements carAccessInterface {
     public String db_url = DB_URL;
     public String db_username = DB_USERNAME;
     public String db_password = DB_PASSWORD;
-//
-//    public static void main(String[] args) {
-//        carSqlDataAccess test = new carSqlDataAccess();
-//        test.getCar(1);
-//    }
+
 
     /**
      * Talk with the database to find the correct car.

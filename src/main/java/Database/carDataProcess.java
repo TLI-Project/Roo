@@ -63,20 +63,36 @@ public class carDataProcess implements carDataProcessingInterface {
      * @throws SQLException
      */
     private Car carEntityCreation(ResultSet carSet) throws SQLException {
-        int id = carSet.getInt("car_id");
+        int car_id = carSet.getInt("car_id");
         String make = carSet.getString("make");
         String model = carSet.getString("model");
+        String carDescription = carSet.getString("carDescription");
         double listPrice = carSet.getDouble("listPrice");
         int year = carSet.getInt("year");
         int kms = carSet.getInt("kms");
         String color = carSet.getString("color");
+        String interior = carSet.getString("interior");
+        String interiorDescription = carSet.getString("interiorDescription");
+        String engine = carSet.getString("engine");
+        String engineDescription = carSet.getString("engineDescription");
+        String performancePackage = carSet.getString("performancePackage");
+        String performancePackageDescription = carSet.getString("performancePackageDescription");
         String condition = carSet.getString("carCondition");
-        String depreciation = carSet.getString("depreciation");
+        double d1 = carSet.getDouble("d1");
+        double d2 = carSet.getDouble("d2");
+        double d3 = carSet.getDouble("d3");
+        double d4 = carSet.getDouble("d4");
+        double d5 = carSet.getDouble("d5");
+        double d6 = carSet.getDouble("d6");
+        double d7 = carSet.getDouble("d7");
+        double d8 = carSet.getDouble("d8");
+        double d9 = carSet.getDouble("d9");
+        double d10 = carSet.getDouble("d10");
         String image = carSet.getString("image");
 
-        Map<String, Feature> features = featureAddition(carSet);
-
-        return new Car(id, make, model, listPrice, year, kms, color, condition, depreciation, image, features);
+        return new Car(car_id, make, model, carDescription, listPrice, year, kms, color, interior, interiorDescription,
+                engine, engineDescription, performancePackage, performancePackageDescription, condition, d1, d2, d3,
+                d4, d5, d6, d7, d8, d9, d10, image);
     }
 
     /**

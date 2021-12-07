@@ -30,8 +30,9 @@ public class RooApplication {
 
 		SpringApplication.run(RooApplication.class, args);
 
-		carDataProcess test = new carDataProcess();
-		System.out.println(test.getAllCars());
+//		carDataProcess test = new carDataProcess();
+//		System.out.println(test.getCarById(0));
+
 	}
 
 	/**
