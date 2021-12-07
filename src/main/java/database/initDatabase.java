@@ -240,31 +240,81 @@ public class initDatabase {
                 data.add(lineText.substring(first_pos));
 
                 String car_id = data.get(0);
+                System.out.println(car_id);
                 String make = data.get(1);
+                System.out.println(make);
                 String model = data.get(2);
+                System.out.println(model);
+
                 String carDescription = data.get(3);
+                System.out.println(carDescription);
+
                 String listPrice = data.get(4);
+                System.out.println(listPrice);
+
                 String year = data.get(5);
+                System.out.println(year);
+
                 String kms = data.get(6);
+                System.out.println(kms);
+
                 String color = data.get(7);
+                System.out.println(color);
+
                 String interior = data.get(8);
+                System.out.println(interior);
+
                 String interiorDescription = data.get(9);
+                System.out.println(interior);
+
                 String engine = data.get(10);
+                System.out.println(engine);
+
                 String engineDescription = data.get(11);
+                System.out.println(engineDescription);
+
                 String performancePackage = data.get(12);
+                System.out.println(performancePackage);
+
                 String performancePackageDescription = data.get(13);
+                System.out.println(performancePackageDescription);
+
                 String carCondition = data.get(14);
+                System.out.println(carCondition);
+
                 String d1 = data.get(15);
+                System.out.println(d1);
+
                 String d2 = data.get(16);
+                System.out.println(d2);
+
                 String d3 = data.get(17);
+                System.out.println(d3);
+
                 String d4 = data.get(18);
+                System.out.println(d4);
+
                 String d5 = data.get(19);
+                System.out.println(d5);
+
                 String d6 = data.get(20);
+                System.out.println(d6);
+
                 String d7 = data.get(21);
+                System.out.println(d7);
+
                 String d8 = data.get(22);
+                System.out.println(d8);
+
                 String d9 = data.get(23);
+                System.out.println(d9);
+
                 String d10 = data.get(24);
+                System.out.println(d10);
+
                 String image = data.get(25);
+                System.out.println(image);
+
 
                 int int_car_id = Integer.parseInt(car_id);
                 preparedStmt.setInt(1, int_car_id);
