@@ -4,7 +4,6 @@ import Database.carDataProcess;
 import adapters.apiInputAdapter;
 import entities.Car;
 import entities.InputData;
-import entities.LoanResponse;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,10 +44,6 @@ public class CarDataController {
 
     @PutMapping("/userCarLoan")
     public String userCarLoan(@RequestBody InputData inputData) throws IOException, InterruptedException {
-//        System.out.println(inputData.loanAmount);
-//        System.out.println(inputData.creditScore);
-//        System.out.println(inputData.pytBudget);
-//        System.out.println(inputData.downpayment);
         return userCarLoanRequest(inputData.loanAmount, inputData.creditScore, inputData.pytBudget, inputData.id, inputData.downpayment);
     }
 
@@ -61,14 +56,22 @@ public class CarDataController {
     private String makeCarJSON(Car car) {
         return "{\n" +
                 "   \"id\": " + car.id + ",\n" +
-                "   \"carMake\": \"" + car.carMake + "\",\n" +
                 "   \"carModel\": \"" + car.carModel + "\",\n" +
+                "   \"carMake\": \"" + car.carMake + "\",\n" +
+                "   \"carDescription\": \"" + car.carDescription + "\",\n" +
                 "   \"listPrice\": " + car.listPrice + ",\n" +
                 "   \"year\": \"" + car.year + "\",\n" +
                 "   \"kms\": " + car.kms + ",\n" +
                 "   \"color\": \"" + car.color + "\",\n" +
-                "   \"depreciation\": \"" + car.listPrice + "\",\n" +
+                "   \"condition\": \"" + car.condition + "\",\n" +
+                "   \"depreciation\": " + car.depreciation + ",\n" +
                 "   \"imageURL\": \"" + car.imageURL + "\"\n" +
+                "   \"interior\": \"" + car.features.get("interior").name + "\"\n" +
+                "   \"interiorDescription\": \"" + car.features.get("interior").description + "\"\n" +
+                "   \"engine\": \"" + car.features.get("engine").name + "\"\n" +
+                "   \"engineDescription\": \"" + car.features.get("engine").description + "\"\n" +
+                "   \"performancePackage\": \"" + car.features.get("performancePackage").name + "\"\n" +
+                "   \"performancePackageDescription\": \"" + car.features.get("performancePackage").description + "\"\n" +
                 "}";
     }
 
@@ -90,9 +93,6 @@ public class CarDataController {
         System.out.println(response.statusCode());
         System.out.println(response.body());
         String sensoRespones = response.body();
-        LoanResponse responseObj = new LoanResponse(sensoRespones.);
-
-
 
         return response.body();
     }
