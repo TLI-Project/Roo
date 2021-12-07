@@ -1,8 +1,7 @@
-package adapters;
+package interfaces;
 
-import Database.carDataProcess;
+import database.carDataProcess;
 import entities.Car;
-import entities.User;
 
 public interface apiInputAdapter {
 

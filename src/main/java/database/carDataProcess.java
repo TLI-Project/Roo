@@ -1,7 +1,8 @@
-package Database;
+package database;
 
 import entities.Car;
 import entities.Feature;
+import interfaces.carDataProcessingInterface;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
