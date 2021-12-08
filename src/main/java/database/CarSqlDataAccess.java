@@ -35,10 +35,6 @@ public class CarSqlDataAccess implements CarAccessInterface {
         return null;
     }
 
-    /**
-     *
-     * @return
-     */
     public ResultSet getAllCars() {
         try {
             Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);

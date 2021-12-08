@@ -25,25 +25,25 @@ public class InitDatabase {
     private static void makeDatabase(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
 
-        String create_db = "CREATE DATABASE IF NOT EXISTS auto_education";
+        String create_db = "CREATE DATABASE IF NOT EXISTS sensoCarData";
         stmt.execute(create_db);
-        stmt.execute("USE auto_education");
+        stmt.execute("USE sensoCarData");
 
-        String client_table = "CREATE TABLE IF NOT EXISTS client " +
-                "(client_id int(10) NOT NULL AUTO_INCREMENT, " +
-                "first_name varchar(50) NOT NULL, " +
-                "last_name varchar(50) NOT NULL, " +
-                "email varchar(100) NOT NULL, " +
-                "street_address varchar(100) NOT NULL, " +
-                "city varchar(100) NOT NULL, " +
-                "province varchar(100) NOT NULL, " +
-                "credit_score int(3) NOT NULL, " +
-                "preferred_vehicle int(10) NOT NULL, " +
-                "income int(10) NOT NULL, " +
-                "budget int(10) NOT NULL, " +
-                "PRIMARY KEY (client_id)) " +
-                "DEFAULT CHARSET=utf8";
-        stmt.execute(client_table);
+//        String client_table = "CREATE TABLE IF NOT EXISTS client " +
+//                "(client_id int(10) NOT NULL AUTO_INCREMENT, " +
+//                "first_name varchar(50) NOT NULL, " +
+//                "last_name varchar(50) NOT NULL, " +
+//                "email varchar(100) NOT NULL, " +
+//                "street_address varchar(100) NOT NULL, " +
+//                "city varchar(100) NOT NULL, " +
+//                "province varchar(100) NOT NULL, " +
+//                "credit_score int(3) NOT NULL, " +
+//                "preferred_vehicle int(10) NOT NULL, " +
+//                "income int(10) NOT NULL, " +
+//                "budget int(10) NOT NULL, " +
+//                "PRIMARY KEY (client_id)) " +
+//                "DEFAULT CHARSET=utf8";
+//        stmt.execute(client_table);
         stmt.close();
     }
 
