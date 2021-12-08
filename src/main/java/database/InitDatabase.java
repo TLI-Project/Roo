@@ -22,9 +22,9 @@ public class InitDatabase {
     private static void makeDatabase(Connection conn) throws SQLException {
         Statement stmt = conn.createStatement();
 
-        String create_db = "CREATE DATABASE IF NOT EXISTS sensoCarData";
+        String create_db = "CREATE DATABASE IF NOT EXISTS auto_education";
         stmt.execute(create_db);
-        stmt.execute("USE sensoCarData");
+        stmt.execute("USE auto_education");
         stmt.close();
     }
 
