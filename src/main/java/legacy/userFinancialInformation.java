@@ -9,7 +9,7 @@
 //
 //import java.io.IOException;
 //
-//import static constants.Indexes.*;
+//import static legacy.Indexes.*;
 //
 //@RestController
 //public class userFinancialInformation {

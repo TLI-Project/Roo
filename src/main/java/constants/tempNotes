@@ -10,3 +10,15 @@ export DB_PASSWORD=WinnieThePooh!
 export DB_USERNAME=admin
 export SENSO_KEY=AIzaSyCD_-qCdXqrvWGHN1tpe2PH6Rf8zpnTdXs
 export SENSO_URL=https://auto-loan-api.senso.ai/rate
+
+//    const inputData = {
+//        loanAmount: loanAmount,
+//                monthlyBudget: monthlyBudget,
+//                downPayment: downPayment,
+//                address: address,
+//                postalCode: postalCode,
+//                city: city,
+//                province: province,
+//                dateOfBirth: dateOfBirth,
+//                sinNumber: sinNumber
+//    }
