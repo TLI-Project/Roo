@@ -8,18 +8,18 @@ import java.util.Map;
  * A car the user can buy.
  */
 public class Car extends Entity{
-    public final int id;
-    public final String carMake;
-    public final String carModel;
-    public final String carDescription;
-    public final double listPrice;
-    public final int year;
-    public final double kms;
-    public final String color;
-    public final String condition;
-    public final ArrayList<Double> depreciation;
-    public final String imageURL;
-    public final Map<String, Feature> features;
+    private final int carId;
+    private final String carMake;
+    private final String carModel;
+    private final String carDescription;
+    private final double listPrice;
+    private final int year;
+    private final double kms;
+    private final String color;
+    private final String condition;
+    private final ArrayList<Double> depreciation;
+    private final String imageURL;
+    private final Map<String, Feature> features;
 
 
     public Car(int id, String carMake, String carModel, String carDescription, double listPrice, int year,
@@ -27,7 +27,7 @@ public class Car extends Entity{
                String engineDescription, String performancePackage, String performancePackageDescription,
                String condition, double d1, double d2, double d3, double d4, double d5, double d6, double d7, double d8, double d9, double d10,
                String imageURL) {
-        this.id = id;
+        this.carId = id;
         this.carModel = carModel;
         this.carMake = carMake;
         this.carDescription = carDescription;
@@ -59,8 +59,6 @@ public class Car extends Entity{
         this.depreciation.add(d10);
     }
 
-
-
     public void addFeatures(String interior, String interiorDescription, String engine, String engineDescription,
                             String performancePackage, String performancePackageDescription){
 
@@ -74,53 +72,73 @@ public class Car extends Entity{
         this.features.put("performancePackage", performancePackageFeature);
     }
 
-//    /**
-//     * Get the different features the car has.
-//     * @return a Map<Feature name, Feature obj> of all features.
-//     */
-//    public Map<String, Feature> getFeatures(){
-//        return this.features;
-//    }
+    /**
+     * Get the car's model
+     * @return a string representation of the car model.
+     */
+    public String getCarModel(){
+        return this.carModel;
+    }
 
-//    /**
-//     * Get the car's model
-//     * @return a string representation of the car model.
-//     */
-//    public String getCarModel(){
-//        return this.carModel;
-//    }
-//
-//    /**
-//     * Get the car's make.
-//     * @return a string representation of the car make.
-//     */
-//    public String getCarMake(){
-//        return this.carMake;
-//    }
-//
-//    /**
-//     * Get the car's list price.
-//     * @return a double representing how much the car costs.
-//     */
-//    public double getListPrice(){
-//        return this.listPrice;
-//    }
-//
-//    /**
-//     * Get the year the car was made
-//     * @return an integer of the year.
-//     */
-//    public int getYear(){
-//        return this.year;
-//    }
-//
-//    /**
-//     * Get the kms on the car
-//     * @return double representation of kms on the car.
-//     */
-//    public double getKms(){
-//        return this.kms;
-//    }
+    /**
+     * Get the car's make.
+     * @return a string representation of the car make.
+     */
+    public String getCarMake(){
+        return this.carMake;
+    }
+
+    /**
+     * Get the car's list price.
+     * @return a double representing how much the car costs.
+     */
+    public double getListPrice(){
+        return this.listPrice;
+    }
+
+    /**
+     * Get the year the car was made
+     * @return an integer of the year.
+     */
+    public int getYear(){
+        return this.year;
+    }
+
+    /**
+     * Get the kms on the car
+     * @return double representation of kms on the car.
+     */
+    public double getKms(){
+        return this.kms;
+    }
+
+    public HashMap<String, Feature> getFeatures() {
+        return (HashMap<String, Feature>) this.features;
+    }
+
+    public String getCarDescription() {
+        return this.carDescription;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public String getCondition() {
+        return condition;
+    }
+
+    public ArrayList<Double> getDepreciation() {
+        return depreciation;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public int getCarId() {
+        return carId;
+    }
 
     /**
      * Overview of the car object
@@ -131,23 +149,5 @@ public class Car extends Entity{
         return "Car Model: " + this.carModel + ", Car Make: " + this.carMake;
     }
 
-//    public String getColor() {
-//        return color;
-//    }
-//
-//    public String getCondition() {
-//        return condition;
-//    }
-//
-//    public String getDepreciation() {
-//        return depreciation;
-//    }
-//
-//    public String getImageURL() {
-//        return imageURL;
-//    }
-//
-//    public int getId() {
-//        return id;
-//    }
+
 }

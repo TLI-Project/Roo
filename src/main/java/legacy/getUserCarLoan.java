@@ -2,7 +2,7 @@ package legacy;
 
 // TODO: is this a type of controller?
 
-import interfaces.apiInputAdapter;
+import interfaces.ApiInputAdapter;
 
 import java.io.IOException;
 import java.net.URI;
@@ -35,7 +35,7 @@ public class getUserCarLoan {
      */
     public static String userCarLoanRequest(double loanAmount, int creditScore, double pytBudget, int carID, double downPayment) throws IOException, InterruptedException {
 
-        String inputJson = apiInputAdapter.makeInputJSON(loanAmount, creditScore, pytBudget, carID, downPayment);
+        String inputJson = ApiInputAdapter.makeInputJSON(loanAmount, creditScore, pytBudget, carID, downPayment);
 
         var request = HttpRequest.newBuilder()
                 .uri(URI.create(System.getenv("SENSO_URL")))

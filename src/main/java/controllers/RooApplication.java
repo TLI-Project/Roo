@@ -1,7 +1,7 @@
 package controllers;
 
-import database.databaseConnection;
-import database.initDatabase;
+import database.DatabaseConnection;
+import database.InitDatabase;
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.SpringApplication;
@@ -22,8 +22,8 @@ public class RooApplication {
 
 	public static void main(String[] args) throws SQLException, IOException {
 
-		Connection conn = databaseConnection.conn();
-		initDatabase.main(conn);
+		Connection conn = DatabaseConnection.conn();
+		InitDatabase.main(conn);
 		conn.close();
 
 		SpringApplication.run(RooApplication.class, args);
