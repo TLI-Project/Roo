@@ -1,6 +1,7 @@
 package interfaces;
 
 import controllers.CreditScoreController;
+import entities.Person;
 import usecases.CarDataProcess;
 import entities.Car;
 
@@ -13,17 +14,11 @@ public interface ApiInputAdapter {
      *
      * @return a JSON str for the SensoAPI
      */
-    static String makeLoanInputJSON(Map<String, String> userInputs) {
-
-        // get values from userInputs
-        double loanAmount = Double.parseDouble(userInputs.get("loanAmount"));
-        double pytBudget = Double.parseDouble(userInputs.get("pytBudget"));
-        int carId = Integer.parseInt(userInputs.get("carId"));
-        double downPayment = Double.parseDouble(userInputs.get("downPayment"));
+    static String makeLoanInputJSON(Person userInputs) {
 
         // get the car object
         CarDataProcess dbConn = new CarDataProcess();
-        Car car = dbConn.getCarById(carId);
+        Car car = dbConn.getCarById(userInputs.getCarId());
 
         // turn objects into a JSON for the credit score api
         String creditInputJson = ApiInputAdapter.makeCreditInputJSON(userInputs);
@@ -34,15 +29,15 @@ public interface ApiInputAdapter {
 
         // return a JSON representation of the user's finances
         return "{\n" +
-                "   \"loanAmount\": " + loanAmount + ",\n" +
+                "   \"loanAmount\": " + userInputs.getLoanAmount() + ",\n" +
                 "   \"creditScore\": " + creditScore + ",\n" +
-                "   \"pytBudget\": " + pytBudget + ",\n" +
+                "   \"pytBudget\": " + userInputs.getPytBudget() + ",\n" +
                 "   \"vehicleMake\": \"" + car.getCarMake() + "\",\n" +
                 "   \"vehicleModel\": \"" + car.getCarModel() + "\",\n" +
                 "   \"vehicleYear\": " + car.getYear() + ",\n" +
                 "   \"vehicleKms\": " + car.getKms() + ",\n" +
                 "   \"listPrice\": " + car.getListPrice() + ",\n" +
-                "   \"downpayment\": " + downPayment + "\n" +
+                "   \"downpayment\": " + userInputs.getDownpayment() + "\n" +
                 "}";
     }
 
@@ -52,22 +47,15 @@ public interface ApiInputAdapter {
      * @param userInputs is all the user inputs from the frontend.
      * @return a JSON string representation for the CreditScore API.
      */
-    static String makeCreditInputJSON(Map<String, String> userInputs) {
-
-        String address = userInputs.get("address");
-        String postalCode = userInputs.get("postalCode");
-        String city = userInputs.get("city");
-        String province = userInputs.get("province");
-        String dateOfBirth = userInputs.get("dateOfBirth");
-        int sinNumber = Integer.parseInt(userInputs.get("sinNumber"));
+    static String makeCreditInputJSON(Person userInputs) {
 
         return "{\n" +
-                "   \"address\": \"" + address + "\",\n" +
-                "   \"postalCode\": \"" + postalCode + "\",\n" +
-                "   \"city\": \"" + city + "\",\n" +
-                "   \"province\": \"" + province + "\",\n" +
-                "   \"dateOfBirth\": \"" + dateOfBirth + "\",\n" +
-                "   \"sinNumber\": " + sinNumber + ",\n" +
+                "   \"address\": \"" + userInputs.getAddress() + "\",\n" +
+                "   \"postalCode\": \"" + userInputs.getPostalCode() + "\",\n" +
+                "   \"city\": \"" + userInputs.getCity() + "\",\n" +
+                "   \"province\": \"" + userInputs.getProvince() + "\",\n" +
+                "   \"dateOfBirth\": \"" + userInputs.getDateOfBirth() + "\",\n" +
+                "   \"sinNumber\": " + userInputs.getSinNumber() + ",\n" +
                 "}";
     }
 }
