@@ -24,12 +24,12 @@ public class CarToJsonRequestAdapter implements CarOutputAdapter {
                 "   \"color\": \"" + car.getColor() + "\",\n" +
                 "   \"condition\": \"" + car.getCondition() + "\",\n" +
                 "   \"depreciation\": " + car.getDepreciation() + ",\n" +
-                "   \"imageURL\": \"" + car.getImageURL() + "\"\n" +
-                "   \"interior\": \"" + car.getFeatures().get("interior").getName() + "\"\n" +
-                "   \"interiorDescription\": \"" + car.getFeatures().get("interior").getDescription() + "\"\n" +
-                "   \"engine\": \"" + car.getFeatures().get("engine").getName() + "\"\n" +
-                "   \"engineDescription\": \"" + car.getFeatures().get("engine").getDescription() + "\"\n" +
-                "   \"performancePackage\": \"" + car.getFeatures().get("performancePackage").getName() + "\"\n" +
+                "   \"imageURL\": " + car.getImageURL() + ",\n" +
+                "   \"interior\": \"" + car.getFeatures().get("interior").getName() + "\",\n" +
+                "   \"interiorDescription\": \"" + car.getFeatures().get("interior").getDescription() + "\",\n" +
+                "   \"engine\": \"" + car.getFeatures().get("engine").getName() + "\",\n" +
+                "   \"engineDescription\": \"" + car.getFeatures().get("engine").getDescription() + "\",\n" +
+                "   \"performancePackage\": \"" + car.getFeatures().get("performancePackage").getName() + "\",\n" +
                 "   \"performancePackageDescription\": \"" + car.getFeatures().get("performancePackage").getDescription() + "\"\n" +
                 "}";
     }

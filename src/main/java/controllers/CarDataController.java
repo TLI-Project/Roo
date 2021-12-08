@@ -60,10 +60,20 @@ public class CarDataController {
      * @return an ArrayList representaiton of car depreciation (percent value) from year 1-10 respectively.
      */
     @PostMapping("/carDepreciation")
-    public ArrayList<Double> carDepreciation(@RequestBody int carId) {
+    public String carDepreciation(@RequestBody ArrayList<Integer> carIds) {
         CarDataProcess carController = new CarDataProcess();
-        Car car = carController.getCarById(carId);
-        return car.getDepreciation();
+        HashMap<Integer, ArrayList<Double>> result = new HashMap<>();
+        for (int id:carIds) {
+            Car car = carController.getCarById(id);
+            result.put(id, car.getDepreciation());
+
+        }
+        return result.toString();
+//        Car car = carController.getCarById(carIds);
+//        return car.getDepreciation();
+//        return "{\n" +
+//                "   \"depreciation\": " + car.getDepreciation() + "\n" +
+//                "}";
     }
 
 

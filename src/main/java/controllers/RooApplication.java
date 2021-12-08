@@ -1,5 +1,6 @@
 package controllers;
 
+import entities.Car;
 import usecases.CarDataProcess;
 import gateways.DatabaseConnection;
 import database.InitDatabase;
@@ -10,10 +11,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import usecases.CarToJsonRequestAdapter;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 /** @SpringBootApplication marks configuration class that declares one or more Bean methods.
  * @Bean: see more @ https://docs.spring.io/spring-javaconfig/docs/1.0.0.M4/reference/html/ch02s02.html
@@ -30,8 +33,12 @@ public class RooApplication {
 		SpringApplication.run(RooApplication.class, args);
 
 		CarDataProcess carController = new CarDataProcess();
-//		Car car = carController.getCarById(2);
-//		System.out.println(car.getFeatures().get("engine").getName());
+
+		HashMap<Integer, String> allCarMetaData = new HashMap<>();
+		for (Car car : carController.getAllCars()){
+			allCarMetaData.put(car.getCarId(), CarToJsonRequestAdapter.getJsonFormattedCar(car));
+		}
+		System.out.println(allCarMetaData);
 	}
 
 	/**
