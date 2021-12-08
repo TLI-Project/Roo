@@ -46,6 +46,12 @@ public interface ApiInputAdapter {
                 "}";
     }
 
+    /**
+     * Make a JSON representation of the relevant user data needed for getting a credit score.
+     *
+     * @param userInputs is all the user inputs from the frontend.
+     * @return a JSON string representation for the CreditScore API.
+     */
     static String makeCreditInputJSON(Map<String, String> userInputs) {
 
         String address = userInputs.get("address");

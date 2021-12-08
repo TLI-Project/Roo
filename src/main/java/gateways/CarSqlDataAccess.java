@@ -6,6 +6,9 @@ import java.sql.*;
 
 import static constants.DatabaseConstants.*;
 
+/**
+ *
+ */
 public class CarSqlDataAccess implements CarAccessInterface {
 
     /**
@@ -31,6 +34,10 @@ public class CarSqlDataAccess implements CarAccessInterface {
         return null;
     }
 
+    /**
+     * Talk with the database to get all of the cars in the database.
+     * @return a representtation of all teh cars in teh database.
+     */
     public ResultSet getAllCars() {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);

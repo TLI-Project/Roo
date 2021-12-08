@@ -1,22 +1,18 @@
 package controllers;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import usecases.CarDataProcess;
-import interfaces.ApiInputAdapter;
 import entities.Car;
 import org.springframework.web.bind.annotation.*;
 import usecases.CarToJsonRequestAdapter;
 import usecases.SensoReadyInfo;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
+/**
+ * All the endpoints between the frontend and the backend
+ */
 @RestController
 public class CarDataController {
 
@@ -37,7 +33,7 @@ public class CarDataController {
     /**
      * Get request that asks for a certain car.
      * @param id the ID of the car you are looking for.
-     * @return The car entity you are looking for
+     * @return The car entity you are looking for.
      */
     @PostMapping("/carDetails")
     public String carDetails(@RequestBody int id){
@@ -46,20 +42,29 @@ public class CarDataController {
         return CarToJsonRequestAdapter.getJsonFormattedCar(car);
     }
 
+    /**
+     * Call the Senso API /rate endpoing with all the corresponding user information.
+     * @param inputData is the users finances and car information.
+     * @return json representation of the Senso API /rate calculation.
+     * @throws IOException e
+     * @throws InterruptedException e
+     */
     @PutMapping("/userCarLoan")
     public String userCarLoan(@RequestBody String inputData) throws IOException, InterruptedException {
         return SensoReadyInfo.userCarLoanRequest(inputData);
     }
 
-
+    /**
+     * Get a given car's depreciation schedule over the next 10 years.
+     * @param carId is the car whose depreciation you are looking for.
+     * @return an ArrayList representaiton of car depreciation (percent value) from year 1-10 respectively.
+     */
     @PostMapping("/carDepreciation")
     public ArrayList<Double> carDepreciation(@RequestBody int carId) {
         CarDataProcess carController = new CarDataProcess();
         Car car = carController.getCarById(carId);
         return car.getDepreciation();
     }
-
-
 
 
     @GetMapping("/test")

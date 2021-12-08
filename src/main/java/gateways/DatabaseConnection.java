@@ -8,6 +8,10 @@ import static constants.DatabaseConstants.*;
 
 public class DatabaseConnection {
 
+    /**
+     * Create a connection to the database.
+     * @return a connection to the database that allows you to access entities within it.
+     */
     public static Connection conn() {
 
         try {

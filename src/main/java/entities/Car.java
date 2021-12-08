@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * A car the user can buy.
+ * A car the user can buy from the Mercedes Dealer's lot .
  */
 public class Car extends Entity{
     private final int carId;
@@ -24,8 +24,16 @@ public class Car extends Entity{
     private final Map<String, Feature> features;
 
 
-    public Car(ResultSet carSet, HashMap<String, Feature> featureSet, ArrayList<Double> depreciation) throws SQLException {
-        // dsadsa
+    /**
+     * Initialize a new car from the database. There is a builder for this.
+     * @param carSet is the database entry.
+     * @param featureSet is a map of all the cars features.
+     * @param depreciation is a list of the cars depreciation.
+     * @throws SQLException exception.
+     */
+    public Car(ResultSet carSet, HashMap<String, Feature> featureSet,
+               ArrayList<Double> depreciation) throws SQLException {
+        // the 'easy' attributes
         this.carId = carSet.getInt("car_id");
         this.carModel = carSet.getString("model");
         this.carMake = carSet.getString("make");
@@ -36,7 +44,7 @@ public class Car extends Entity{
         this.color = carSet.getString("color");
         this.condition = carSet.getString("carCondition");
         this.imageURL = carSet.getString("image");
-        // dsdasd
+        // the 'gotta make them' attributes
         this.depreciation = depreciation;
         this.features = featureSet;
     }
@@ -81,30 +89,51 @@ public class Car extends Entity{
         return this.kms;
     }
 
+    /**
+     * @return the set of features (interior, engine, performancePackage).
+     */
     public HashMap<String, Feature> getFeatures() {
         return (HashMap<String, Feature>) this.features;
     }
 
+    /**
+     * @return the string description of the car.
+     */
     public String getCarDescription() {
         return this.carDescription;
     }
 
+    /**
+     * @return the color (and brief description) of the car.
+     */
     public String getColor() {
         return color;
     }
 
+    /**
+     * @return the condition (new versus used) of the car.
+     */
     public String getCondition() {
         return condition;
     }
 
+    /**
+     * @return a list of 10 items representation the percentage depreciation at each year.
+     */
     public ArrayList<Double> getDepreciation() {
         return depreciation;
     }
 
+    /**
+     * @return the URL for the picture of the car.
+     */
     public String getImageURL() {
         return imageURL;
     }
 
+    /**
+     * @return the unique ID of the car.
+     */
     public int getCarId() {
         return carId;
     }
