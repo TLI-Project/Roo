@@ -2,6 +2,7 @@ package usecases;
 
 import entities.Car;
 import entities.Feature;
+import interfaces.CarBuilder;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
