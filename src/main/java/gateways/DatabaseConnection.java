@@ -1,4 +1,4 @@
-package database;
+package gateways;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,9 +7,6 @@ import java.sql.SQLException;
 import static constants.DatabaseConstants.*;
 
 public class DatabaseConnection {
-    public static String url = DB_URL;
-    public static String username = DB_USERNAME;
-    public static String password = DB_PASSWORD;
 
     public static Connection conn() {
 
@@ -21,7 +18,7 @@ public class DatabaseConnection {
         }
 
         try {
-            Connection conn = DriverManager.getConnection(url, username, password);
+            Connection conn = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             System.out.println("Connected :)");
 
             return conn;
