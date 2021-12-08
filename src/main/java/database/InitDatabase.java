@@ -11,7 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class initDatabase {
+public class InitDatabase {
 
     public static void main(Connection conn) throws SQLException, IOException {
         makeDatabase(conn);

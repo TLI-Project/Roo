@@ -3,7 +3,7 @@ package interfaces;
 import database.CarDataProcess;
 import entities.Car;
 
-public interface apiInputAdapter {
+public interface ApiInputAdapter {
 
     /**
      * Make a JSON representation of the relevant user and car data.
@@ -21,11 +21,11 @@ public interface apiInputAdapter {
                 "   \"loanAmount\": " + loanAmount + ",\n" +
                 "   \"creditScore\": " + creditScore + ",\n" +
                 "   \"pytBudget\": " + pytBudget + ",\n" +
-                "   \"vehicleMake\": \"" + car.carMake + "\",\n" +
-                "   \"vehicleModel\": \"" + car.carModel + "\",\n" +
-                "   \"vehicleYear\": " + car.year + ",\n" +
-                "   \"vehicleKms\": " + car.kms + ",\n" +
-                "   \"listPrice\": " + car.listPrice + ",\n" +
+                "   \"vehicleMake\": \"" + car.getCarMake() + "\",\n" +
+                "   \"vehicleModel\": \"" + car.getCarModel() + "\",\n" +
+                "   \"vehicleYear\": " + car.getYear() + ",\n" +
+                "   \"vehicleKms\": " + car.getKms() + ",\n" +
+                "   \"listPrice\": " + car.getListPrice() + ",\n" +
                 "   \"downpayment\": " + downPayment + "\n" +
                 "}";
     }

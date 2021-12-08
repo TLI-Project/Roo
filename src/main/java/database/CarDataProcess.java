@@ -2,7 +2,7 @@ package database;
 
 import entities.Car;
 import entities.Feature;
-import interfaces.carDataProcessingInterface;
+import interfaces.CarDataProcessingInterface;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * Turn the carSet from the database into Car entities
  */
-public class carDataProcess implements carDataProcessingInterface {
+public class CarDataProcess implements CarDataProcessingInterface {
 
     /**
      * @return an array of all the Cars in the dataset
@@ -21,7 +21,7 @@ public class carDataProcess implements carDataProcessingInterface {
     @Override
     public ArrayList<Car> getAllCars() {
 
-        carSqlDataAccess dataConnection = new carSqlDataAccess();
+        CarSqlDataAccess dataConnection = new CarSqlDataAccess();
         ResultSet carSet = dataConnection.getAllCars();
 
         ArrayList<Car> cars = new ArrayList<>();
@@ -44,7 +44,7 @@ public class carDataProcess implements carDataProcessingInterface {
     @Override
     public Car getCarById(int id) {
 
-        carSqlDataAccess dataConnection = new carSqlDataAccess();
+        CarSqlDataAccess dataConnection = new CarSqlDataAccess();
         ResultSet carSet = dataConnection.getCar(id);
 
         try{
@@ -64,7 +64,7 @@ public class carDataProcess implements carDataProcessingInterface {
      * @throws SQLException
      */
     private Car carEntityCreation(ResultSet carSet) throws SQLException {
-        int car_id = carSet.getInt("car_id");
+        int carId = carSet.getInt("car_id");
         String make = carSet.getString("make");
         String model = carSet.getString("model");
         String carDescription = carSet.getString("carDescription");
@@ -91,7 +91,7 @@ public class carDataProcess implements carDataProcessingInterface {
         double d10 = carSet.getDouble("d10");
         String image = carSet.getString("image");
 
-        return new Car(car_id, make, model, carDescription, listPrice, year, kms, color, interior, interiorDescription,
+        return new Car(carId, make, model, carDescription, listPrice, year, kms, color, interior, interiorDescription,
                 engine, engineDescription, performancePackage, performancePackageDescription, condition, d1, d2, d3,
                 d4, d5, d6, d7, d8, d9, d10, image);
     }
@@ -113,8 +113,8 @@ public class carDataProcess implements carDataProcessingInterface {
         Feature engineFeature = new Feature(engineName, engineDescription);
         Map<String, Feature> Features = new HashMap<>();
 
-        Features.put(interiorFeature.name, interiorFeature);
-        Features.put(engineFeature.name, engineFeature);
+        Features.put(interiorFeature.getName(), interiorFeature);
+        Features.put(engineFeature.getName(), engineFeature);
 
         return Features;
     }
