@@ -1,5 +1,6 @@
 package controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import database.CarDataProcess;
 import interfaces.ApiInputAdapter;
 import entities.Car;
@@ -13,6 +14,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 public class CarDataController {
@@ -43,7 +45,6 @@ public class CarDataController {
         return makeCarJSON(car);
     }
 
-
 //    const inputData = {
 //        loanAmount: loanAmount,
 //                monthlyBudget: monthlyBudget,
@@ -56,11 +57,10 @@ public class CarDataController {
 //                sinNumber: sinNumber
 //    }
 
-//    @PutMapping("/userCarLoan")
-//    public String userCarLoan(@RequestBody InputData inputData) throws IOException, InterruptedException {
-//        return userCarLoanRequest(inputData.getLoanAmount(), inputData.getCreditScore(), inputData.getPytBudget(),
-//                inputData.getCarId(), inputData.getDownpayment());
-//    }
+    @PutMapping("/userCarLoan")
+    public String userCarLoan(@RequestBody String inputData) throws IOException, InterruptedException {
+        return userCarLoanRequest(inputData);
+    }
 
 
     @PostMapping("/carDepreciation")
@@ -98,26 +98,47 @@ public class CarDataController {
                 "}";
     }
 
-    public static String userCarLoanRequest(double loanAmount, int creditScore, double pytBudget,
-                                            int carID, double downPayment) throws IOException, InterruptedException {
+    public static String userCarLoanRequest(String inputData) throws IOException, InterruptedException {
 
-        String inputJson = ApiInputAdapter.makeInputJSON(loanAmount, creditScore, pytBudget, carID, downPayment);
+        ObjectMapper mapper = new ObjectMapper();
 
-        var request = HttpRequest.newBuilder()
-                .uri(URI.create(System.getenv("SENSO_URL")))
-                .header("Content-Type", "application/json")
-                .header("x-api-key", System.getenv("SENSO_KEY"))
-                .POST(HttpRequest.BodyPublishers.ofString(inputJson))
-                .build();
+        try {
+            // convert JSON string to Map
+            Map<String, String> userInputs = mapper.readValue(inputData, Map.class);
+            System.out.println(userInputs);
 
-        var client = HttpClient.newHttpClient();
+            double loanAmount = Double.parseDouble(userInputs.get("loanAmount"));
+            int creditScore = generateCreditScore();
+            double pytBudget = Double.parseDouble(userInputs.get("pytBudget"));
+            int carId = Integer.parseInt(userInputs.get("carId"));
+            double downPayment = Double.parseDouble(userInputs.get("downPayment"));
 
-        var response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            String inputJson = ApiInputAdapter.makeInputJSON(loanAmount, creditScore, pytBudget, carId, downPayment);
 
-        System.out.println(response.statusCode());
-        System.out.println(response.body());
+            var request = HttpRequest.newBuilder()
+                    .uri(URI.create(System.getenv("SENSO_URL")))
+                    .header("Content-Type", "application/json")
+                    .header("x-api-key", System.getenv("SENSO_KEY"))
+                    .POST(HttpRequest.BodyPublishers.ofString(inputJson))
+                    .build();
 
-        return response.body();
+            var client = HttpClient.newHttpClient();
+
+            var response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            System.out.println(response.statusCode());
+            System.out.println(response.body());
+
+            return response.body();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "Server Error. Car Loan request";
+        }
+    }
+
+    private static int generateCreditScore() {
+        return (int) ((Math.random() * (800 - 600)) + 600);
     }
 
     @GetMapping("/test")
