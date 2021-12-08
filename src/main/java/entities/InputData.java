@@ -1,6 +1,5 @@
 package entities;
 
-import Gson;
 
 public class InputData extends Entity {
     public final int carId;

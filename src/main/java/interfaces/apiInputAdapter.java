@@ -1,19 +1,22 @@
 package interfaces;
 
-import database.carDataProcess;
+import database.CarDataProcess;
 import entities.Car;
 
 public interface apiInputAdapter {
 
     /**
      * Make a JSON representation of the relevant user and car data.
+     *
      * @return a JSON str for the SensoAPI
      */
-    static String makeInputJSON(double loanAmount, int creditScore, double pytBudget, int carID, double downPayment){
+    static String makeInputJSON(double loanAmount, int creditScore, double pytBudget, int carID, double downPayment) {
 
-        carDataProcess dbConn = new carDataProcess();
+        // get the car object
+        CarDataProcess dbConn = new CarDataProcess();
         Car car = dbConn.getCarById(carID);
 
+        // return a JSON representation of the car
         return "{\n" +
                 "   \"loanAmount\": " + loanAmount + ",\n" +
                 "   \"creditScore\": " + creditScore + ",\n" +
@@ -26,19 +29,4 @@ public interface apiInputAdapter {
                 "   \"downpayment\": " + downPayment + "\n" +
                 "}";
     }
-
-
-//    static String apiReadyInput(User user, Car car) {
-//        return "{\n" +
-//                "   \"loanAmount\": " + user.getLoanAmount() + ",\n" +
-//                "   \"creditScore\": " + user.getCreditScore() + ",\n" +
-//                "   \"pytBudget\": " + user.getPytBudget() + ",\n" +
-//                "   \"vehicleMake\": \"" + car.carMake + "\",\n" +
-//                "   \"vehicleModel\": \"" + car.carModel + "\",\n" +
-//                "   \"vehicleYear\": " + car.year + ",\n" +
-//                "   \"vehicleKms\": " + car.kms + ",\n" +
-//                "   \"listPrice\": " + car.listPrice + ",\n" +
-//                "   \"downpayment\": " + user.getDownpayment() + "\n" +
-//                "}";
-//    }
 }

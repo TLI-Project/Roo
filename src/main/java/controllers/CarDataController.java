@@ -1,6 +1,6 @@
 package controllers;
 
-import database.carDataProcess;
+import database.CarDataProcess;
 import interfaces.apiInputAdapter;
 import entities.Car;
 import entities.InputData;
@@ -23,7 +23,7 @@ public class CarDataController {
      */
     @PostMapping("/carMetaData")
     public HashMap<Integer, String> carMetaData(){
-        carDataProcess carController = new carDataProcess();
+        CarDataProcess carController = new CarDataProcess();
         HashMap<Integer, String> allCarMetaData = new HashMap<Integer, String>();
         for (Car car : carController.getAllCars()){
             allCarMetaData.put(car.id, makeCarJSON(car));
@@ -38,7 +38,7 @@ public class CarDataController {
      */
     @PostMapping("/carDetails")
     public String carDetails(@RequestBody int id){
-        carDataProcess carController = new carDataProcess();
+        CarDataProcess carController = new CarDataProcess();
         Car car = carController.getCarById(id);
         return makeCarJSON(car);
     }
@@ -53,7 +53,7 @@ public class CarDataController {
 
     @PostMapping("/carDepreciation")
     public ArrayList<Double> carDepreciation(@RequestBody int carId) {
-        carDataProcess carController = new carDataProcess();
+        CarDataProcess carController = new CarDataProcess();
         Car car = carController.getCarById(carId);
         return car.depreciation;
     }

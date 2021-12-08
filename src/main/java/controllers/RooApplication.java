@@ -27,6 +27,8 @@ public class RooApplication {
 		conn.close();
 
 		SpringApplication.run(RooApplication.class, args);
+
+
 	}
 
 	/**
