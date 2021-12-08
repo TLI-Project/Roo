@@ -29,19 +29,19 @@ public class CarFeatureBuilder implements CarBuilder {
     @Override
     public void buildInterior(String interiorName, String interiorDescription) {
         Feature interiorFeature = new Feature(interiorName, interiorDescription);
-        featureSet.put(interiorFeature.getName(), interiorFeature);
+        featureSet.put("interior", interiorFeature);
     }
 
     @Override
     public void buildEngine(String engineName, String engineDescription) {
         Feature engineFeature = new Feature(engineName, engineDescription);
-        featureSet.put(engineFeature.getName(), engineFeature);
+        featureSet.put("engine", engineFeature);
     }
 
     @Override
     public void buildPerformancePackage(String performancePackageName, String perforancePackageDescription) {
         Feature performancePackageFeature =  new Feature(performancePackageName, perforancePackageDescription);
-        featureSet.put(performancePackageFeature.getName(), performancePackageFeature);
+        featureSet.put("performancePackage", performancePackageFeature);
     }
 
     @Override

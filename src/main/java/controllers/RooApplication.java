@@ -1,8 +1,10 @@
 package controllers;
 
+import database.CarDataProcess;
 import database.DatabaseConnection;
 import database.InitDatabase;
 
+import entities.Car;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,6 +29,10 @@ public class RooApplication {
 		conn.close();
 
 		SpringApplication.run(RooApplication.class, args);
+
+		CarDataProcess carController = new CarDataProcess();
+//		Car car = carController.getCarById(2);
+//		System.out.println(car.getFeatures().get("engine").getName());
 
 
 	}
