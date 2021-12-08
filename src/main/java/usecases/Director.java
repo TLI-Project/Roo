@@ -4,19 +4,32 @@ package usecases;
 import entities.Car;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Director {
 
-    private CarBuilder carBuilder;
+    private final ResultSet carSet;
+    private final CarFeatureBuilder b;
+    public Director(ResultSet cs){
+        this.carSet = cs;
+        this.b = new CarFeatureBuilder();
 
-    public void setBuilder(CarBuilder b){
-        this.carBuilder = b;
     }
 
-    public constructAClass(CarBuilder b, ResultSet carSet){
-        b.buildEngine(carSet.);
-        b.buildInterior();
-        b.buildPerformancePackage();
+    public Car makeCarEntity() throws SQLException {
+
+        b.buildDepreciation(carSet);
+
+        b.buildInterior(carSet.getString("interior"),
+                carSet.getString("interiorDescription"));
+
+        b.buildEngine(carSet.getString("engine"),
+                carSet.getString("engineDescription"));
+
+        b.buildPerformancePackage(carSet.getString("performancePackage"),
+                carSet.getString("performancePackageDescription"));
+
+        return b.buildCar(carSet);
     }
 
 

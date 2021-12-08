@@ -1,5 +1,7 @@
 package entities;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,39 +24,20 @@ public class Car extends Entity{
     private final Map<String, Feature> features;
 
 
-    public Car(int id, String carMake, String carModel, String carDescription, double listPrice, int year,
-               double kms, String color, String interior, String interiorDescription, String engine,
-               String engineDescription, String performancePackage, String performancePackageDescription,
-               String condition, ArrayList<Double> depreciation, String imageURL) {
-
-        this.carId = id;
-        this.carModel = carModel;
-        this.carMake = carMake;
-        this.carDescription = carDescription;
-        this.listPrice = listPrice;
-        this.year = year;
-        this.kms = kms;
-        this.color = color;
-        this.condition = condition;
+    public Car(ResultSet carSet, HashMap<String, Feature> featureSet, ArrayList<Double> depreciation) throws SQLException {
+        this.carId = carSet.getInt("car_id");
+        this.carModel = carSet.getString("model");
+        this.carMake = carSet.getString("make");
+        this.carDescription = carSet.getString("carDescription");
+        this.listPrice = carSet.getDouble("listPrice");
+        this.year = carSet.getInt("year");
+        this.kms = carSet.getInt("kms");
+        this.color = carSet.getString("color");
+        this.condition = carSet.getString("carCondition");
         this.depreciation = depreciation;
-        this.imageURL = imageURL;
-        this.features = new HashMap<String, Feature>();
+        this.imageURL = carSet.getString("image");
+        this.features = featureSet;
 
-
-        Feature interiorFeature = new Feature(interior, interiorDescription);
-        Feature engineFeature = new Feature(engine, engineDescription);
-        Feature performancePackageFeature = new Feature(performancePackage, performancePackageDescription);
-
-        addFeatures(interiorFeature, engineFeature, performancePackageFeature);
-    }
-
-    public void addFeatures(Feature interiorFeature, Feature engineFeature, Feature performancePackageFeature){
-
-        this.features.put("interior", interiorFeature);
-
-        this.features.put("engine", engineFeature);
-
-        this.features.put("performancePackage", performancePackageFeature);
     }
 
     /**

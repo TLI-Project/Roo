@@ -8,10 +8,6 @@ import static constants.DatabaseConstants.*;
 
 public class CarSqlDataAccess implements CarAccessInterface {
 
-    public String dbUrl = DB_URL;
-    public String dbUsername = DB_USERNAME;
-    public String dbPassword = DB_PASSWORD;
-
     /**
      * Talk with the database to find the correct car.
      * @param id the ID of the car we are looking for.
@@ -19,9 +15,9 @@ public class CarSqlDataAccess implements CarAccessInterface {
      */
     public ResultSet getCar(int id) {
         try{
-            Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             Statement statement = connection.createStatement();
-            statement.execute("USE sensoCarData");
+            statement.execute("USE auto_education");
 
             String getCar = "SELECT * FROM car WHERE car_id = " + id;
             ResultSet test = statement.executeQuery(getCar);
@@ -37,9 +33,9 @@ public class CarSqlDataAccess implements CarAccessInterface {
 
     public ResultSet getAllCars() {
         try {
-            Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
             Statement statement = connection.createStatement();
-            statement.execute("USE sensoCarData");
+            statement.execute("USE auto_education");
 
             String getAllCars = "SELECT * FROM car";
 

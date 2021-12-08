@@ -2,7 +2,7 @@ package database;
 
 import entities.Car;
 import interfaces.CarDataProcessingInterface;
-import org.jetbrains.annotations.NotNull;
+import usecases.Director;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,7 +27,8 @@ public class CarDataProcess implements CarDataProcessingInterface {
 
         try{
             while (carSet.next()) {
-                cars.add(carEntityCreation(carSet));
+                Director carBuilder = new Director(carSet);
+                cars.add(carBuilder.makeCarEntity());
             }
         } catch (SQLException e) {
             System.out.println("Failed turning cars into objects");
@@ -48,55 +49,54 @@ public class CarDataProcess implements CarDataProcessingInterface {
 
         try{
             carSet.next();
-            return carEntityCreation(carSet);
+            Director carBuilder = new Director(carSet);
+            return carBuilder.makeCarEntity();
         } catch (SQLException e) {
             System.out.println("Failed to find car with that ID");
         }
         return null;
     }
 
-    /**
-     * HELPER FUNCTION:
-     * Turn database entry into car object.
-     * @param carSet is the database entry.
-     * @return Car entity
-     * @throws SQLException
-     */
-    private Car carEntityCreation(ResultSet carSet) throws SQLException {
-        int carId = carSet.getInt("car_id");
-        String make = carSet.getString("make");
-        String model = carSet.getString("model");
-        String carDescription = carSet.getString("carDescription");
-        double listPrice = carSet.getDouble("listPrice");
-        int year = carSet.getInt("year");
-        int kms = carSet.getInt("kms");
-        String color = carSet.getString("color");
-        String interior = carSet.getString("interior");
-        String interiorDescription = carSet.getString("interiorDescription");
-        String engine = carSet.getString("engine");
-        String engineDescription = carSet.getString("engineDescription");
-        String performancePackage = carSet.getString("performancePackage");
-        String performancePackageDescription = carSet.getString("performancePackageDescription");
-        String condition = carSet.getString("carCondition");
-        String image = carSet.getString("image");
+//    /**
+//     * HELPER FUNCTION:
+//     * Turn database entry into car object.
+//     * @param carSet is the database entry.
+//     * @return Car entity
+//     * @throws SQLException
+//     */
+//    private Car carEntityCreation(ResultSet carSet) throws SQLException {
+//        int carId = carSet.getInt("car_id");
+//        String make = carSet.getString("make");
+//        String model = carSet.getString("model");
+//        String carDescription = carSet.getString("carDescription");
+//        double listPrice = carSet.getDouble("listPrice");
+//        int year = carSet.getInt("year");
+//        int kms = carSet.getInt("kms");
+//        String color = carSet.getString("color");
+//        String interior = carSet.getString("interior");
+//        String interiorDescription = carSet.getString("interiorDescription");
+//        String engine = carSet.getString("engine");
+//        String engineDescription = carSet.getString("engineDescription");
+//        String performancePackage = carSet.getString("performancePackage");
+//        String performancePackageDescription = carSet.getString("performancePackageDescription");
+//        String condition = carSet.getString("carCondition");
+//        String image = carSet.getString("image");
+//
+//        // feature builder
+////
+////        return new Car(carId, make, model, carDescription, listPrice, year, kms, color, interior, interiorDescription,
+////                engine, engineDescription, performancePackage, performancePackageDescription, condition, depreciation,
+////                image);
+//    }
 
-        // feature builder
-
-        ArrayList<Double> depreciation = cumulateDepreciation(carSet);
-
-        return new Car(carId, make, model, carDescription, listPrice, year, kms, color, interior, interiorDescription,
-                engine, engineDescription, performancePackage, performancePackageDescription, condition, depreciation,
-                image);
-    }
-
-    @NotNull
-    private ArrayList<Double> cumulateDepreciation(ResultSet carSet) throws SQLException {
-        ArrayList<Double> depreciation = new ArrayList<>();
-        for(int i = 1; i <= 10; i++ ){
-            depreciation.add(carSet.getDouble("d" + i));
-        }
-        return depreciation;
-    }
+//    @NotNull
+//    private ArrayList<Double> cumulateDepreciation(ResultSet carSet) throws SQLException {
+//        ArrayList<Double> depreciation = new ArrayList<>();
+//        for(int i = 1; i <= 10; i++ ){
+//            depreciation.add(carSet.getDouble("d" + i));
+//        }
+//        return depreciation;
+//    }
 
 //    /**
 //     * HELPER FUNCTION TO HELPER:
