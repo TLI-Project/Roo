@@ -4,7 +4,7 @@ import entities.Car;
 
 import java.util.ArrayList;
 
-public interface carDataProcessingInterface {
+public interface CarDataProcessingInterface {
 
     public ArrayList<Car> getAllCars();
 

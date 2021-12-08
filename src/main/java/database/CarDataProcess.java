@@ -1,19 +1,18 @@
 package database;
 
 import entities.Car;
-import entities.Feature;
-import interfaces.carDataProcessingInterface;
+import interfaces.CarDataProcessingInterface;
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+
 
 /**
  * Turn the carSet from the database into Car entities
  */
-public class carDataProcess implements carDataProcessingInterface {
+public class CarDataProcess implements CarDataProcessingInterface {
 
     /**
      * @return an array of all the Cars in the dataset
@@ -21,7 +20,7 @@ public class carDataProcess implements carDataProcessingInterface {
     @Override
     public ArrayList<Car> getAllCars() {
 
-        carSqlDataAccess dataConnection = new carSqlDataAccess();
+        CarSqlDataAccess dataConnection = new CarSqlDataAccess();
         ResultSet carSet = dataConnection.getAllCars();
 
         ArrayList<Car> cars = new ArrayList<>();
@@ -44,7 +43,7 @@ public class carDataProcess implements carDataProcessingInterface {
     @Override
     public Car getCarById(int id) {
 
-        carSqlDataAccess dataConnection = new carSqlDataAccess();
+        CarSqlDataAccess dataConnection = new CarSqlDataAccess();
         ResultSet carSet = dataConnection.getCar(id);
 
         try{
@@ -64,7 +63,7 @@ public class carDataProcess implements carDataProcessingInterface {
      * @throws SQLException
      */
     private Car carEntityCreation(ResultSet carSet) throws SQLException {
-        int car_id = carSet.getInt("car_id");
+        int carId = carSet.getInt("car_id");
         String make = carSet.getString("make");
         String model = carSet.getString("model");
         String carDescription = carSet.getString("carDescription");
@@ -79,43 +78,46 @@ public class carDataProcess implements carDataProcessingInterface {
         String performancePackage = carSet.getString("performancePackage");
         String performancePackageDescription = carSet.getString("performancePackageDescription");
         String condition = carSet.getString("carCondition");
-        double d1 = carSet.getDouble("d1");
-        double d2 = carSet.getDouble("d2");
-        double d3 = carSet.getDouble("d3");
-        double d4 = carSet.getDouble("d4");
-        double d5 = carSet.getDouble("d5");
-        double d6 = carSet.getDouble("d6");
-        double d7 = carSet.getDouble("d7");
-        double d8 = carSet.getDouble("d8");
-        double d9 = carSet.getDouble("d9");
-        double d10 = carSet.getDouble("d10");
         String image = carSet.getString("image");
 
-        return new Car(car_id, make, model, carDescription, listPrice, year, kms, color, interior, interiorDescription,
-                engine, engineDescription, performancePackage, performancePackageDescription, condition, d1, d2, d3,
-                d4, d5, d6, d7, d8, d9, d10, image);
+        // feature builder
+
+        ArrayList<Double> depreciation = cumulateDepreciation(carSet);
+
+        return new Car(carId, make, model, carDescription, listPrice, year, kms, color, interior, interiorDescription,
+                engine, engineDescription, performancePackage, performancePackageDescription, condition, depreciation,
+                image);
     }
 
-    /**
-     * HELPER FUNCTION TO HELPER:
-     * Turn features into a set of features
-     * @param carSet the database entry
-     * @return a Set of features (engine and interior)
-     * @throws SQLException
-     */
-    private Map<String, Feature> featureAddition(ResultSet carSet) throws SQLException {
-        String interiorName = carSet.getString("interior");
-        String interiorDescription = carSet.getString("interiorDescription");
-        String engineName = carSet.getString("engine");
-        String engineDescription = carSet.getString("engineDescription");
-
-        Feature interiorFeature = new Feature(interiorName, interiorDescription);
-        Feature engineFeature = new Feature(engineName, engineDescription);
-        Map<String, Feature> Features = new HashMap<>();
-
-        Features.put(interiorFeature.name, interiorFeature);
-        Features.put(engineFeature.name, engineFeature);
-
-        return Features;
+    @NotNull
+    private ArrayList<Double> cumulateDepreciation(ResultSet carSet) throws SQLException {
+        ArrayList<Double> depreciation = new ArrayList<>();
+        for(int i = 1; i <= 10; i++ ){
+            depreciation.add(carSet.getDouble("d" + i));
+        }
+        return depreciation;
     }
+
+//    /**
+//     * HELPER FUNCTION TO HELPER:
+//     * Turn features into a set of features
+//     * @param carSet the database entry
+//     * @return a Set of features (engine and interior)
+//     * @throws SQLException
+//     */
+//    private Map<String, Feature> featureAddition(ResultSet carSet) throws SQLException {
+//        String interiorName = carSet.getString("interior");
+//        String interiorDescription = carSet.getString("interiorDescription");
+//        String engineName = carSet.getString("engine");
+//        String engineDescription = carSet.getString("engineDescription");
+//
+//        Feature interiorFeature = new Feature(interiorName, interiorDescription);
+//        Feature engineFeature = new Feature(engineName, engineDescription);
+//        Map<String, Feature> Features = new HashMap<>();
+//
+//        Features.put(interiorFeature.getName(), interiorFeature);
+//        Features.put(engineFeature.getName(), engineFeature);
+//
+//        return Features;
+//    }
 }

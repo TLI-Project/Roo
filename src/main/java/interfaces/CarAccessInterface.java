@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 /**
  * Turn Car Dataset entries into entities we can use in our application.
  */
-public interface carAccessInterface {
+public interface CarAccessInterface {
 
     /**
      * Iterare through the car dataset and return all cars

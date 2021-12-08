@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import static constants.databaseConstants.*;
+import static constants.DatabaseConstants.*;
 
-public class databaseConnection {
+public class DatabaseConnection {
     public static String url = DB_URL;
     public static String username = DB_USERNAME;
     public static String password = DB_PASSWORD;

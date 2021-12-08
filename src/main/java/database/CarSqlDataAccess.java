@@ -1,17 +1,16 @@
 package database;
 
-import interfaces.carAccessInterface;
+import interfaces.CarAccessInterface;
 
 import java.sql.*;
 
-import static constants.databaseConstants.*;
+import static constants.DatabaseConstants.*;
 
-public class carSqlDataAccess implements carAccessInterface {
+public class CarSqlDataAccess implements CarAccessInterface {
 
-    public String db_url = DB_URL;
-    public String db_username = DB_USERNAME;
-    public String db_password = DB_PASSWORD;
-
+    public String dbUrl = DB_URL;
+    public String dbUsername = DB_USERNAME;
+    public String dbPassword = DB_PASSWORD;
 
     /**
      * Talk with the database to find the correct car.
@@ -20,7 +19,7 @@ public class carSqlDataAccess implements carAccessInterface {
      */
     public ResultSet getCar(int id) {
         try{
-            Connection connection = DriverManager.getConnection(db_url, db_username, db_password);
+            Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
             Statement statement = connection.createStatement();
             statement.execute("USE sensoCarData");
 
@@ -36,13 +35,9 @@ public class carSqlDataAccess implements carAccessInterface {
         return null;
     }
 
-    /**
-     *
-     * @return
-     */
     public ResultSet getAllCars() {
         try {
-            Connection connection = DriverManager.getConnection(db_url, db_username, db_password);
+            Connection connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
             Statement statement = connection.createStatement();
             statement.execute("USE sensoCarData");
 

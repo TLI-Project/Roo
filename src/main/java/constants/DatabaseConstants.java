@@ -1,6 +1,6 @@
 package constants;
 
-public class databaseConstants {
+public class DatabaseConstants {
 
 
 
