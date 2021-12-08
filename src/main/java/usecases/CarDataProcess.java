@@ -1,8 +1,8 @@
-package database;
+package usecases;
 
+import gateways.CarSqlDataAccess;
 import entities.Car;
 import interfaces.CarDataProcessingInterface;
-import usecases.Director;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,7 +27,7 @@ public class CarDataProcess implements CarDataProcessingInterface {
 
         try{
             while (carSet.next()) {
-                Director carBuilder = new Director(carSet);
+                CarDirector carBuilder = new CarDirector(carSet);
                 cars.add(carBuilder.makeCarEntity());
             }
         } catch (SQLException e) {
@@ -49,7 +49,7 @@ public class CarDataProcess implements CarDataProcessingInterface {
 
         try{
             carSet.next();
-            Director carBuilder = new Director(carSet);
+            CarDirector carBuilder = new CarDirector(carSet);
             return carBuilder.makeCarEntity();
         } catch (SQLException e) {
             System.out.println("Failed to find car with that ID");

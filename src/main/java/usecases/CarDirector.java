@@ -6,11 +6,11 @@ import entities.Car;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Director {
+public class CarDirector {
 
     private final ResultSet carSet;
     private final CarFeatureBuilder b;
-    public Director(ResultSet cs){
+    public CarDirector(ResultSet cs){
         this.carSet = cs;
         this.b = new CarFeatureBuilder();
 

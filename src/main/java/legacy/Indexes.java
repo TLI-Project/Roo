@@ -1,4 +1,4 @@
-package constants;
+package legacy;
 
 public class Indexes{
     public static final int LOAN_INDEX = 0;
