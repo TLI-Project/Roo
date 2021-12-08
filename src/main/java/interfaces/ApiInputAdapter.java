@@ -1,6 +1,6 @@
 package interfaces;
 
-import database.CarDataProcess;
+import usecases.CarDataProcess;
 import entities.Car;
 
 public interface ApiInputAdapter {
@@ -10,13 +10,28 @@ public interface ApiInputAdapter {
      *
      * @return a JSON str for the SensoAPI
      */
-    static String makeInputJSON(double loanAmount, int creditScore, double pytBudget, int carID, double downPayment) {
+    static String makeLoanInputJSON(double loanAmount, int creditScore, double pytBudget, int carID, double downPayment) {
 
         // get the car object
         CarDataProcess dbConn = new CarDataProcess();
         Car car = dbConn.getCarById(carID);
 
         // return a JSON representation of the car
+        return "{\n" +
+                "   \"loanAmount\": " + loanAmount + ",\n" +
+                "   \"creditScore\": " + creditScore + ",\n" +
+                "   \"pytBudget\": " + pytBudget + ",\n" +
+                "   \"vehicleMake\": \"" + car.getCarMake() + "\",\n" +
+                "   \"vehicleModel\": \"" + car.getCarModel() + "\",\n" +
+                "   \"vehicleYear\": " + car.getYear() + ",\n" +
+                "   \"vehicleKms\": " + car.getKms() + ",\n" +
+                "   \"listPrice\": " + car.getListPrice() + ",\n" +
+                "   \"downpayment\": " + downPayment + "\n" +
+                "}";
+    }
+
+    static String makeCreditInputJSON() {
+
         return "{\n" +
                 "   \"loanAmount\": " + loanAmount + ",\n" +
                 "   \"creditScore\": " + creditScore + ",\n" +

@@ -25,6 +25,7 @@ public class Car extends Entity{
 
 
     public Car(ResultSet carSet, HashMap<String, Feature> featureSet, ArrayList<Double> depreciation) throws SQLException {
+        // dsadsa
         this.carId = carSet.getInt("car_id");
         this.carModel = carSet.getString("model");
         this.carMake = carSet.getString("make");
@@ -34,10 +35,10 @@ public class Car extends Entity{
         this.kms = carSet.getInt("kms");
         this.color = carSet.getString("color");
         this.condition = carSet.getString("carCondition");
-        this.depreciation = depreciation;
         this.imageURL = carSet.getString("image");
+        // dsdasd
+        this.depreciation = depreciation;
         this.features = featureSet;
-
     }
 
     /**

@@ -1,10 +1,9 @@
 package controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import database.CarDataProcess;
+import usecases.CarDataProcess;
 import interfaces.ApiInputAdapter;
 import entities.Car;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.web.bind.annotation.*;
 import usecases.CarToJsonRequestAdapter;
 
@@ -91,23 +90,34 @@ public class CarDataController {
             System.out.println(userInputs);
 
             double loanAmount = Double.parseDouble(userInputs.get("loanAmount"));
-            int creditScore = generateCreditScore();
             double pytBudget = Double.parseDouble(userInputs.get("pytBudget"));
             int carId = Integer.parseInt(userInputs.get("carId"));
             double downPayment = Double.parseDouble(userInputs.get("downPayment"));
 
-            String inputJson = ApiInputAdapter.makeInputJSON(loanAmount, creditScore, pytBudget, carId, downPayment);
 
-            var request = HttpRequest.newBuilder()
+            String creditInputJson = ApiInputAdapter.makeCreditInputJSON();
+
+            var creditRequest = HttpRequest.newBuilder()
+                    .uri(URI.create("MCOK URI"))
+                    .header("Content-Type", "application/json")
+                    .header("x-api-key", "MOCK KEY")
+                    .POST(HttpRequest.BodyPublishers.ofString(creditInputJson))
+                    .build();
+            CreditScoreController csc = new CreditScoreController();
+            int creditScore = csc.pingCreditScoreAPI(creditRequest);
+
+            String loanInputJson = ApiInputAdapter.makeLoanInputJSON(loanAmount, creditScore, pytBudget, carId, downPayment);
+
+            var loanRequest = HttpRequest.newBuilder()
                     .uri(URI.create(System.getenv("SENSO_URL")))
                     .header("Content-Type", "application/json")
                     .header("x-api-key", System.getenv("SENSO_KEY"))
-                    .POST(HttpRequest.BodyPublishers.ofString(inputJson))
+                    .POST(HttpRequest.BodyPublishers.ofString(loanInputJson))
                     .build();
 
             var client = HttpClient.newHttpClient();
 
-            var response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            var response = client.send(loanRequest, HttpResponse.BodyHandlers.ofString());
 
             System.out.println(response.statusCode());
             System.out.println(response.body());
@@ -120,9 +130,6 @@ public class CarDataController {
         }
     }
 
-    private static int generateCreditScore() {
-        return (int) ((Math.random() * (800 - 600)) + 600);
-    }
 
     @GetMapping("/test")
     public String test(){

@@ -35,7 +35,7 @@ public class getUserCarLoan {
      */
     public static String userCarLoanRequest(double loanAmount, int creditScore, double pytBudget, int carID, double downPayment) throws IOException, InterruptedException {
 
-        String inputJson = ApiInputAdapter.makeInputJSON(loanAmount, creditScore, pytBudget, carID, downPayment);
+        String inputJson = ApiInputAdapter.makeLoanInputJSON(loanAmount, creditScore, pytBudget, carID, downPayment);
 
         var request = HttpRequest.newBuilder()
                 .uri(URI.create(System.getenv("SENSO_URL")))
