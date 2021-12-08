@@ -8,6 +8,7 @@ import usecases.SensoReadyInfo;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 /**
@@ -50,30 +51,38 @@ public class CarDataController {
      * @throws InterruptedException e
      */
     @PutMapping("/userCarLoan")
-    public String userCarLoan(@RequestBody String inputData) throws IOException, InterruptedException {
-        return SensoReadyInfo.userCarLoanRequest(inputData);
+    public String userCarLoan(@RequestBody String[] inputData) throws IOException, InterruptedException {
+        System.out.println(Arrays.toString(inputData));
+        return "{\n" +
+                "   \"test\": " + 1 + "\n" +
+                "}";
+//        return SensoReadyInfo.userCarLoanRequest(inputData);
     }
 
     /**
      * Get a given car's depreciation schedule over the next 10 years.
-     * @param carId is the car whose depreciation you are looking for.
+//     * @param carId is the car whose depreciation you are looking for.
      * @return an ArrayList representaiton of car depreciation (percent value) from year 1-10 respectively.
      */
     @PostMapping("/carDepreciation")
-    public String carDepreciation(@RequestBody ArrayList<Integer> carIds) {
+    public String carDepreciation(@RequestBody int id) {
         CarDataProcess carController = new CarDataProcess();
-        HashMap<Integer, ArrayList<Double>> result = new HashMap<>();
-        for (int id:carIds) {
-            Car car = carController.getCarById(id);
-            result.put(id, car.getDepreciation());
+//        HashMap<Integer, ArrayList<Double>> result = new HashMap<>();
+        Car car = carController.getCarById(id);
+//        result.put(id, car.getDepreciation());
+//        for (int i = 1; i <= 4; i ++) {
+//            if (carIds.get("" + i + "") != -1){
+//                Car car = carController.getCarById(carIds.get("" + i + ""));
+//                result.put(carIds.get("" + i + ""), car.getDepreciation());
+//            }
+//        }
+//        return result.toString();
 
-        }
-        return result.toString();
 //        Car car = carController.getCarById(carIds);
 //        return car.getDepreciation();
-//        return "{\n" +
-//                "   \"depreciation\": " + car.getDepreciation() + "\n" +
-//                "}";
+        return "{\n" +
+                "   \"depreciation\": " + car.getDepreciation() + "\n" +
+                "}";
     }
 
 
