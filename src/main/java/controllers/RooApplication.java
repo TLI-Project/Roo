@@ -3,7 +3,7 @@ package controllers;
 import entities.Car;
 import usecases.CarDataProcess;
 import gateways.DatabaseConnection;
-import database.InitDatabase;
+import Database.InitDatabase;
 
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.SpringApplication;
