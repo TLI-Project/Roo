@@ -27,7 +27,7 @@ public class CarDataController {
     @PostMapping("/carMetaData")
     public HashMap<Integer, String> carMetaData(){
         CarDataProcess carController = new CarDataProcess();
-        HashMap<Integer, String> allCarMetaData = new HashMap<Integer, String>();
+        HashMap<Integer, String> allCarMetaData = new HashMap<>();
         for (Car car : carController.getAllCars()){
             allCarMetaData.put(car.getCarId(), CarToJsonRequestAdapter.getJsonFormattedCar(car));
         }
@@ -45,18 +45,6 @@ public class CarDataController {
         Car car = carController.getCarById(id);
         return CarToJsonRequestAdapter.getJsonFormattedCar(car);
     }
-
-//    const inputData = {
-//        loanAmount: loanAmount,
-//                monthlyBudget: monthlyBudget,
-//                downPayment: downPayment,
-//                address: address,
-//                postalCode: postalCode,
-//                city: city,
-//                province: province,
-//                dateOfBirth: dateOfBirth,
-//                sinNumber: sinNumber
-//    }
 
     @PutMapping("/userCarLoan")
     public String userCarLoan(@RequestBody String inputData) throws IOException, InterruptedException {
