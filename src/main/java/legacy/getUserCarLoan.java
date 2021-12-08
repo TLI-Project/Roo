@@ -9,6 +9,7 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.Map;
 
 public class getUserCarLoan {
 
@@ -25,17 +26,10 @@ public class getUserCarLoan {
 //        return userCarLoanRequest(user, car);
 //    }
 
-    /**
-     * Ping the senso API with the for a user/car pairing.
-     * @param user the user looking at cars
-     * @param car the car the user is looking at
-     * @return the Senso response of the loan data
-     * @throws IOException
-     * @throws InterruptedException
-     */
-    public static String userCarLoanRequest(double loanAmount, int creditScore, double pytBudget, int carID, double downPayment) throws IOException, InterruptedException {
 
-        String inputJson = ApiInputAdapter.makeLoanInputJSON(loanAmount, creditScore, pytBudget, carID, downPayment);
+    public static String userCarLoanRequest(Map<String, String> userInputs) throws IOException, InterruptedException {
+
+        String inputJson = ApiInputAdapter.makeLoanInputJSON(userInputs);
 
         var request = HttpRequest.newBuilder()
                 .uri(URI.create(System.getenv("SENSO_URL")))
