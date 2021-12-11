@@ -1,16 +1,16 @@
 package usecases;
 
-import entities.Person;
-import interfaces.PersonServiceIntercace;
+import entities.GraphingData;
+import interfaces.GraphingServiceInterface;
 
-public class PersonService implements PersonServiceIntercace {
+public class GraphingService implements GraphingServiceInterface {
     @Override
-    public Person saveUpdatedPerson(Person person) {
+    public GraphingData saveUpdatedPerson(GraphingData person) {
         return null;
     }
 
     @Override
-    public Person findPersonById(Integer id) {
+    public GraphingData findPersonById(Integer id) {
         return null;
     }
 

@@ -1,11 +1,9 @@
 package interfaces;
 
 import controllers.CreditScoreController;
-import entities.Person;
+import entities.GraphingData;
 import usecases.CarDataProcess;
 import entities.Car;
-
-import java.util.Map;
 
 public interface ApiInputAdapter {
 
@@ -14,7 +12,7 @@ public interface ApiInputAdapter {
      *
      * @return a JSON str for the SensoAPI
      */
-    static String makeLoanInputJSON(Person userInputs) {
+    static String makeLoanInputJSON(GraphingData userInputs) {
 
         // get the car object
         CarDataProcess dbConn = new CarDataProcess();
@@ -47,7 +45,7 @@ public interface ApiInputAdapter {
      * @param userInputs is all the user inputs from the frontend.
      * @return a JSON string representation for the CreditScore API.
      */
-    static String makeCreditInputJSON(Person userInputs) {
+    static String makeCreditInputJSON(GraphingData userInputs) {
 
         return "{\n" +
                 "   \"address\": \"" + userInputs.getAddress() + "\",\n" +

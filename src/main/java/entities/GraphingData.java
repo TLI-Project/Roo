@@ -1,10 +1,10 @@
 package entities;
 
-import interfaces.PersonServiceIntercace;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-
-public class Person {
+/**
+ * GraphingData is all the information needed to send to the Credit Score "API" and the Senso API.
+ * It is not yet compatible with the SensoReadyInfo.
+ */
+public class GraphingData {
     private final int carId;
     private final double loanAmount;
     private final double pytBudget;
@@ -16,17 +16,8 @@ public class Person {
     private final String dateOfBirth;
     private final int sinNumber;
 
-    public Person(Integer carId,
-                  Double loanAmount,
-                  Double pytBudget,
-                  Double downPayment,
-                  String address,
-                  String postalCode,
-                  String city,
-                  String province,
-                  String dateOfBirth,
-                  Integer sinNumber){
-
+    public GraphingData(Integer carId, Double loanAmount, Double pytBudget, Double downPayment, String address,
+                        String postalCode, String city, String province, String dateOfBirth, Integer sinNumber){
         this.carId = carId;
         this.loanAmount = loanAmount;
         this.pytBudget = pytBudget;

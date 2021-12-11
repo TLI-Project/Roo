@@ -1,6 +1,6 @@
 package controllers;
 
-import entities.Person;
+import entities.GraphingData;
 import usecases.CarDataProcess;
 import entities.Car;
 import org.springframework.web.bind.annotation.*;
@@ -54,11 +54,10 @@ public class CarDataController {
      */
     @PostMapping(
             value = "/userCarLoan", consumes = "application/json", produces = "application/json")
-    public String userCarLoan(@RequestBody Person inputData) throws IOException, InterruptedException {
+    public String userCarLoan(@RequestBody GraphingData inputData) throws IOException, InterruptedException {
         System.out.println(SensoReadyInfo.userCarLoanRequest(inputData));
         return SensoReadyInfo.userCarLoanRequest(inputData);
     }
-
     /**
      * Get a given car's depreciation schedule over the next 10 years.
      * //     * @param carId is the car whose depreciation you are looking for.
@@ -73,9 +72,9 @@ public class CarDataController {
                 "   \" " + id + " \": " + car.getDepreciation() + "\n" +
                 "}";
     }
-
-    @GetMapping("/test")
-    public String test() {
-        return "{\"working\": 1}";
-    }
+//
+//    @GetMapping("/test")
+//    public String test() {
+//        return "{\"working\": 1}";
+//    }
 }
