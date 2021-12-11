@@ -1,45 +1,43 @@
 package adapter;
 
-import controllers.CreditScoreController;
 import entities.Car;
 import entities.GraphingData;
 import entities.SensoJSON;
-import interfaces.ApiInputAdapter;
-import usecases.CarDataProcess;
 
 /**
  * Adapter allows GraphingData to talk to the SensoAPI by turning its data into the correctly formatted JSON.
  */
 public class GraphingDataAdapter extends SensoJSON {
     private final GraphingData graphingData;
+    private final int creditScore;
+    private final Car chosenCar;
 
-    public GraphingDataAdapter(GraphingData data) {
+    /**
+     * Iitialize the GraphinDataAdapter with the required information
+     * @param car is the car we are trying to get loan data for.
+     * @param creditScore is the credit score of the user.
+     * @param data is the user's financial inputs.
+     */
+    public GraphingDataAdapter(Car car, int creditScore, GraphingData data) {
+        this.chosenCar = car;
+        this.creditScore = creditScore;
         this.graphingData = data;
     }
 
+    /**
+     * @return a JSON represenation that fits the Senso API body parameters
+     */
     @Override
     public String sensoReadyData() {
-        // get the car object
-        CarDataProcess dbConn = new CarDataProcess();
-        Car car = dbConn.getCarById(graphingData.getCarId());
-
-        // turn objects into a JSON for the credit score api
-        String creditInputJson = ApiInputAdapter.makeCreditInputJSON(graphingData);
-
-        // call the credit score API
-        CreditScoreController csc = new CreditScoreController();
-        int creditScore = csc.pingCreditScoreAPI(creditInputJson);
-
-        // return a JSON representation of the user's finances
         return "{\n" +
                 "   \"loanAmount\": " + graphingData.getLoanAmount() + ",\n" +
                 "   \"creditScore\": " + creditScore + ",\n" +
                 "   \"pytBudget\": " + graphingData.getPytBudget() + ",\n" +
-                "   \"vehicleMake\": \"" + car.getCarMake() + "\",\n" +
-                "   \"vehicleModel\": \"" + car.getCarModel() + "\",\n" +
-                "   \"vehicleYear\": " + car.getYear() + ",\n" +
-                "   \"vehicleKms\": " + car.getKms() + ",\n" +
-                "   \"listPrice\": " + car.getListPrice() + ",\n" +
+                "   \"vehicleMake\": \"" + chosenCar.getCarMake() + "\",\n" +
+                "   \"vehicleModel\": \"" + chosenCar.getCarModel() + "\",\n" +
+                "   \"vehicleYear\": " + chosenCar.getYear() + ",\n" +
+                "   \"vehicleKms\": " + chosenCar.getKms() + ",\n" +
+                "   \"listPrice\": " + chosenCar.getListPrice() + ",\n" +
                 "   \"downpayment\": " + graphingData.getDownpayment() + "\n" +
                 "}";
 
