@@ -1,4 +1,4 @@
-package adapter;
+package usecases;
 
 import entities.Car;
 import interfaces.CarToJsonInterface;

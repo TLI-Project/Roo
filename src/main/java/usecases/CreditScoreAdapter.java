@@ -1,4 +1,4 @@
-package adapter;
+package usecases;
 
 import interfaces.CreditScoreJsonInterface;
 

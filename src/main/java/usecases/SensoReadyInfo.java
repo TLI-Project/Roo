@@ -1,6 +1,5 @@
 package usecases;
 
-import adapter.GraphingDataAdapter;
 import entities.Car;
 import entities.GraphingData;
 

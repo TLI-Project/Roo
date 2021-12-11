@@ -1,6 +1,6 @@
 package entities;
 
-import adapter.CreditScoreAdapter;
+import usecases.CreditScoreAdapter;
 import controllers.CreditScoreController;
 
 /**

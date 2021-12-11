@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import adapter.CarToJsonRequestAdapter;
+import usecases.CarToJsonRequestAdapter;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -42,7 +42,7 @@ public class RooApplication {
 	 * Fixes the cors issue that we were running into.
 	 * @return WebMvcConfigurer
 	 */
-	@Bean // fix cors error
+	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
