@@ -11,16 +11,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import usecases.CarToJsonRequestAdapter;
+import adapter.CarToJsonRequestAdapter;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-/** @SpringBootApplication marks configuration class that declares one or more Bean methods.
- * @Bean: see more @ https://docs.spring.io/spring-javaconfig/docs/1.0.0.M4/reference/html/ch02s02.html
- */
 @SpringBootApplication
 public class RooApplication {
 

@@ -1,13 +1,13 @@
-package usecases;
+package adapter;
 
 import entities.Car;
-import interfaces.CarOutputAdapter;
+import interfaces.CarToJsonInterface;
 import org.jetbrains.annotations.NotNull;
 
-public class CarToJsonRequestAdapter implements CarOutputAdapter {
+public class CarToJsonRequestAdapter implements CarToJsonInterface {
 
     @Override
-    public String request(Car car) {
+    public String getCarToJsonRepresentation(Car car) {
         return getJsonFormattedCar(car);
     }
 

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public interface CarDataProcessingInterface {
 
-    public ArrayList<Car> getAllCars();
+    ArrayList<Car> getAllCars();
 
-    public Car getCarById(int id);
+    Car getCarById(int id);
 }

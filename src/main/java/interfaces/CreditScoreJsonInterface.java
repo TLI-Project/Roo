@@ -8,5 +8,5 @@ public interface CreditScoreJsonInterface {
     /**
      * @return a JSON representation of the data needed for a credit score check.
      */
-    public String creditReadyData();
+    String creditReadyData();
 }

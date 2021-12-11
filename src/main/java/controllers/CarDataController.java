@@ -4,7 +4,7 @@ import entities.GraphingData;
 import usecases.CarDataProcess;
 import entities.Car;
 import org.springframework.web.bind.annotation.*;
-import usecases.CarToJsonRequestAdapter;
+import adapter.CarToJsonRequestAdapter;
 import usecases.SensoReadyInfo;
 
 import java.io.IOException;
