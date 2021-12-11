@@ -1,12 +1,12 @@
-package entities;
+package interfaces;
 
 /**
  * Compatible with SensoReadyInfo
  */
-public abstract class SensoJSON {
+public interface SensoJsonInterface {
 
     /**
      * @return a JSON representation of the data needed for the Senso API body for the Loan API call.
      */
-    public abstract String sensoReadyData();
+    public String sensoReadyData();
 }

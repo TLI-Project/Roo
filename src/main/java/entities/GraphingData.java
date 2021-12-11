@@ -1,5 +1,8 @@
 package entities;
 
+import adapter.CreditScoreAdapter;
+import controllers.CreditScoreController;
+
 /**
  * GraphingData is all the information needed to send to the Credit Score "API" and the Senso API.
  * It is not yet compatible with the SensoReadyInfo.
@@ -30,6 +33,21 @@ public class GraphingData {
         this.sinNumber = sinNumber;
     }
 
+    /**
+     * @return the credit score given the user inputted data.
+     */
+    public int getCreditScore(){
+
+        // Adapt the User's inputted information to fit the credit score API body
+        CreditScoreAdapter creditDataAdapter = new CreditScoreAdapter(address, postalCode, city,
+                province, dateOfBirth, sinNumber);
+        String creditInputJson = creditDataAdapter.creditReadyData();
+
+        // Call the credit score "API" and return its result
+        CreditScoreController csc = new CreditScoreController();
+        return csc.pingCreditScoreAPI(creditInputJson);
+    }
+
     public double getLoanAmount(){
         return this.loanAmount;
     }
@@ -42,33 +60,8 @@ public class GraphingData {
         return this.downpayment;
     }
 
-    public String getAddress(){
-        return this.address;
-    }
-
-    public String getPostalCode(){
-        return this.postalCode;
-    }
-
-    public String getCity(){
-        return this.city;
-    }
-
-    public String getProvince(){
-        return this.province;
-    }
-
-    public String getDateOfBirth(){
-        return this.dateOfBirth;
-    }
-
     public int getCarId(){
         return carId;
     }
-
-    public int getSinNumber(){
-        return this.sinNumber;
-    }
-
 
 }

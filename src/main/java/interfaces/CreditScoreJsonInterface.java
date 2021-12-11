@@ -1,12 +1,12 @@
-package entities;
+package interfaces;
 
 /**
  * Compatible with the CreditScore API call
  */
-public abstract class CreditScoreJSON {
+public interface CreditScoreJsonInterface {
 
     /**
      * @return a JSON representation of the data needed for a credit score check.
      */
-    public abstract String creditReadyData();
+    public String creditReadyData();
 }

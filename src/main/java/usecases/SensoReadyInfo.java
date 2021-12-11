@@ -1,8 +1,6 @@
 package usecases;
 
-import adapter.CreditScoreAdapter;
 import adapter.GraphingDataAdapter;
-import controllers.CreditScoreController;
 import entities.Car;
 import entities.GraphingData;
 
@@ -22,16 +20,8 @@ public class SensoReadyInfo {
         CarDataProcess dbConn = new CarDataProcess();
         Car car = dbConn.getCarById(inputData.getCarId());
 
-        // turn objects into a JSON for the credit score api
-        CreditScoreAdapter creditDataAdapter = new CreditScoreAdapter(inputData);
-        String creditInputJson = creditDataAdapter.creditReadyData();
-
-        // call the credit score API
-        CreditScoreController csc = new CreditScoreController();
-        int creditScore = csc.pingCreditScoreAPI(creditInputJson);
-
         // convert the inputData to the proper JSON body for the Senso API
-        GraphingDataAdapter inputDataAdapter = new GraphingDataAdapter(car, creditScore, inputData);
+        GraphingDataAdapter inputDataAdapter = new GraphingDataAdapter(car, inputData);
         String sensoReadyBody = inputDataAdapter.sensoReadyData();
 
         // format the loan request for the Senso API call
