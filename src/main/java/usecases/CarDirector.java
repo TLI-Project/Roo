@@ -2,9 +2,12 @@ package usecases;
 
 
 import entities.Car;
+import entities.Feature;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Builder design pattern for creating cars from the database.
@@ -21,7 +24,6 @@ public class CarDirector {
     public CarDirector(ResultSet cs){
         this.carSet = cs;
         this.b = new CarFeatureBuilder();
-
     }
 
     /**
@@ -30,8 +32,28 @@ public class CarDirector {
      * @throws SQLException e
      */
     public Car makeCarEntity() throws SQLException {
+        ArrayList<Double> depreciation = makeCarDepreciation();
+        HashMap<String, Feature> featureSet = makeCarFeatures();
+        return new Car(carSet, featureSet, depreciation);
+    }
+
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
+    private ArrayList<Double> makeCarDepreciation() throws SQLException {
 
         b.buildDepreciation(carSet);
+        return b.getDepreciation();
+    }
+
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
+    private HashMap<String, Feature> makeCarFeatures() throws SQLException {
 
         b.buildInterior(carSet.getString("interior"),
                 carSet.getString("interiorDescription"));
@@ -42,6 +64,6 @@ public class CarDirector {
         b.buildPerformancePackage(carSet.getString("performancePackage"),
                 carSet.getString("performancePackageDescription"));
 
-        return b.buildCar(carSet);
+        return b.getFeatureSet();
     }
 }

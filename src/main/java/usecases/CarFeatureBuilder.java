@@ -1,24 +1,22 @@
 package usecases;
 
-import entities.Car;
 import entities.Feature;
-import interfaces.CarBuilder;
+import interfaces.CarBuilderInterface;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class CarFeatureBuilder implements CarBuilder {
+public class CarFeatureBuilder implements CarBuilderInterface {
 
     private final ArrayList<Double> depreciation;
     private final HashMap<String, Feature> featureSet;
 
     public CarFeatureBuilder() {
-        this.depreciation = new ArrayList<Double>();
-        this.featureSet = new HashMap<String, Feature>();
+        this.depreciation = new ArrayList<>();
+        this.featureSet = new HashMap<>();
     }
-
 
     @Override
     public void buildDepreciation(ResultSet cs) throws SQLException {
@@ -45,8 +43,12 @@ public class CarFeatureBuilder implements CarBuilder {
         featureSet.put("performancePackage", performancePackageFeature);
     }
 
-    @Override
-    public Car buildCar(ResultSet cs) throws SQLException {
-        return new Car(cs, featureSet, depreciation);
+
+    public HashMap<String, Feature> getFeatureSet() {
+        return featureSet;
+    }
+
+    public ArrayList<Double> getDepreciation(){
+        return depreciation;
     }
 }
