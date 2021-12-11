@@ -72,9 +72,4 @@ public class CarDataController {
                 "   \" " + id + " \": " + car.getDepreciation() + "\n" +
                 "}";
     }
-//
-//    @GetMapping("/test")
-//    public String test() {
-//        return "{\"working\": 1}";
-//    }
 }

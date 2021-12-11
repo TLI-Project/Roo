@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * A car the user can buy from the Mercedes Dealer's lot .
  */
-public class Car extends Entity{
+public class Car {
     private final int carId;
     private final String carMake;
     private final String carModel;
@@ -137,15 +137,4 @@ public class Car extends Entity{
     public int getCarId() {
         return carId;
     }
-
-    /**
-     * Overview of the car object
-     * @return String wiht car model and car make.
-     */
-    @Override
-    public String getEntityStr() {
-        return "Car Model: " + this.carModel + ", Car Make: " + this.carMake;
-    }
-
-
 }

@@ -1,7 +1,5 @@
 package controllers;
 
-import entities.Car;
-import usecases.CarDataProcess;
 import gateways.DatabaseConnection;
 import Database.InitDatabase;
 
@@ -11,31 +9,23 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import usecases.CarToJsonRequestAdapter;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.HashMap;
 
 @SpringBootApplication
 public class RooApplication {
 
 	public static void main(String[] args) throws SQLException, IOException {
 
+		// initialize the database
 		Connection conn = DatabaseConnection.conn();
 		InitDatabase.main(conn);
 		conn.close();
 
+		// run the main application
 		SpringApplication.run(RooApplication.class, args);
-
-		CarDataProcess carController = new CarDataProcess();
-
-		HashMap<Integer, String> allCarMetaData = new HashMap<>();
-		for (Car car : carController.getAllCars()){
-			allCarMetaData.put(car.getCarId(), CarToJsonRequestAdapter.getJsonFormattedCar(car));
-		}
-		System.out.println(allCarMetaData);
 	}
 
 	/**
