@@ -1,7 +1,7 @@
 package usecases;
 
-import entities.Person;
-import interfaces.ApiInputAdapter;
+import entities.Car;
+import entities.GraphingData;
 
 import java.io.IOException;
 import java.net.URI;
@@ -9,20 +9,34 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-import static constants.DatabaseConstants.DB_URL;
-
+/**
+ * Compatible with SensoJSONs
+ */
 public class SensoReadyInfo {
-    public static String userCarLoanRequest(Person inputData) throws IOException, InterruptedException {
 
-        String loanInputJson = ApiInputAdapter.makeLoanInputJSON(inputData);
+    /**
+     * @param inputData is the data the user inputted from the frontend.
+     * @return the Senso API response.
+     */
+    public static String userCarLoanRequest(GraphingData inputData) throws IOException, InterruptedException {
 
+        // get the user's chosen car
+        CarDataProcess dbConn = new CarDataProcess();
+        Car car = dbConn.getCarById(inputData.getCarId());
+
+        // convert the inputData to the proper JSON body for the Senso API
+        GraphingDataAdapter inputDataAdapter = new GraphingDataAdapter(car, inputData);
+        String sensoReadyBody = inputDataAdapter.sensoReadyData();
+
+        // format the loan request for the Senso API call
         var loanRequest = HttpRequest.newBuilder()
                 .uri(URI.create("https://auto-loan-api.senso.ai/rate"))
                 .header("Content-Type", "application/json")
-                .header("x-api-key", "AIzaSyCD_-qCdXqrvWGHN1tpe2PH6Rf8zpnTdXs")
-                .POST(HttpRequest.BodyPublishers.ofString(loanInputJson))
+                .header("x-api-key", System.getenv("SENSO_KEY"))
+                .POST(HttpRequest.BodyPublishers.ofString(sensoReadyBody))
                 .build();
 
+        // Call the senso API
         var client = HttpClient.newHttpClient();
         var response = client.send(loanRequest, HttpResponse.BodyHandlers.ofString());
         System.out.println(response.statusCode());

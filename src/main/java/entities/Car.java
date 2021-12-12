@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * A car the user can buy from the Mercedes Dealer's lot .
  */
-public class Car extends Entity{
+public class Car {
     private final int carId;
     private final String carMake;
     private final String carModel;
@@ -29,7 +29,6 @@ public class Car extends Entity{
      * @param carSet is the database entry.
      * @param featureSet is a map of all the cars features.
      * @param depreciation is a list of the cars depreciation.
-     * @throws SQLException exception.
      */
     public Car(ResultSet carSet, HashMap<String, Feature> featureSet,
                ArrayList<Double> depreciation) throws SQLException {
@@ -50,7 +49,6 @@ public class Car extends Entity{
     }
 
     /**
-     * Get the car's model
      * @return a string representation of the car model.
      */
     public String getCarModel(){
@@ -58,7 +56,6 @@ public class Car extends Entity{
     }
 
     /**
-     * Get the car's make.
      * @return a string representation of the car make.
      */
     public String getCarMake(){
@@ -66,7 +63,6 @@ public class Car extends Entity{
     }
 
     /**
-     * Get the car's list price.
      * @return a double representing how much the car costs.
      */
     public double getListPrice(){
@@ -74,16 +70,14 @@ public class Car extends Entity{
     }
 
     /**
-     * Get the year the car was made
-     * @return an integer of the year.
+     * @return an integer of the year the car was made.
      */
     public int getYear(){
         return this.year;
     }
 
     /**
-     * Get the kms on the car
-     * @return double representation of kms on the car.
+     * @return double representation of kms driven on the car.
      */
     public double getKms(){
         return this.kms;
@@ -104,7 +98,7 @@ public class Car extends Entity{
     }
 
     /**
-     * @return the color (and brief description) of the car.
+     * @return the color (and brief description of the color) of the car.
      */
     public String getColor() {
         return color;
@@ -137,15 +131,4 @@ public class Car extends Entity{
     public int getCarId() {
         return carId;
     }
-
-    /**
-     * Overview of the car object
-     * @return String wiht car model and car make.
-     */
-    @Override
-    public String getEntityStr() {
-        return "Car Model: " + this.carModel + ", Car Make: " + this.carMake;
-    }
-
-
 }
