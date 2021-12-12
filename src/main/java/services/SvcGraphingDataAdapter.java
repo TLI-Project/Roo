@@ -1,24 +1,28 @@
-package usecases;
+package services;
 
 import entities.Car;
 import entities.GraphingData;
-import interfaces.SensoJsonInterface;
 
 /**
  * Adapter allows GraphingData to talk to the SensoAPI by turning its data into the correctly formatted JSON.
  */
-public class GraphingDataAdapter implements SensoJsonInterface {
+public class SvcGraphingDataAdapter {
     private final GraphingData graphingData;
     private final Car chosenCar;
+    private final int creditScore;
 
     /**
      * Iitialize the GraphinDataAdapter with the required information
      * @param car is the car we are trying to get loan data for.
      * @param data is the user's financial inputs.
      */
-    public GraphingDataAdapter(Car car, GraphingData data) {
+    public SvcGraphingDataAdapter(Car car, GraphingData data, SvcCreditScoreAdapter svcCreditScoreAdapter) {
         this.chosenCar = car;
         this.graphingData = data;
+        // Get credit score.
+        SvcGetCreditScore svcGetCreditScore = new SvcGetCreditScore();
+        String creditScoreApiInputs = svcCreditScoreAdapter.creditReadyData();
+        this.creditScore = svcGetCreditScore.pingCreditScoreAPI(creditScoreApiInputs);
     }
 
     /**
@@ -27,7 +31,7 @@ public class GraphingDataAdapter implements SensoJsonInterface {
     public String sensoReadyData() {
         return "{\n" +
                 "   \"loanAmount\": " + graphingData.getLoanAmount() + ",\n" +
-                "   \"creditScore\": " + graphingData.getCreditScore() + ",\n" +
+                "   \"creditScore\": " + creditScore + ",\n" +
                 "   \"pytBudget\": " + graphingData.getPytBudget() + ",\n" +
                 "   \"vehicleMake\": \"" + chosenCar.getCarMake() + "\",\n" +
                 "   \"vehicleModel\": \"" + chosenCar.getCarModel() + "\",\n" +

@@ -1,8 +1,7 @@
-package usecases;
+package services;
 
-import gateways.CarSqlDataAccess;
 import entities.Car;
-import interfaces.CarDataProcessingInterface;
+import interfaces.CarAccessInterface;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,22 +11,19 @@ import java.util.ArrayList;
 /**
  * Turn the carSet from the database into Car entities
  */
-public class CarDataProcess implements CarDataProcessingInterface {
+public class SvcCarDataProcess {
 
     /**
      * @return an array of all the Cars in the dataset
      */
-    @Override
-    public ArrayList<Car> getAllCars() {
+    public ArrayList<Car> getAllCars(CarAccessInterface carAccess) {
 
-        CarSqlDataAccess dataConnection = new CarSqlDataAccess();
-        ResultSet carSet = dataConnection.getAllCars();
-
+        ResultSet carSet = carAccess.getAllCars();
         ArrayList<Car> cars = new ArrayList<>();
 
         try{
             while (carSet.next()) {
-                CarDirector carBuilder = new CarDirector(carSet);
+                SvcCarDirector carBuilder = new SvcCarDirector(carSet);
                 cars.add(carBuilder.makeCarEntity());
             }
         } catch (SQLException e) {
@@ -41,15 +37,13 @@ public class CarDataProcess implements CarDataProcessingInterface {
      * @param id the unique ID of the car you are trying to find.
      * @return a Car object representation of the car with that ID.
      */
-    @Override
-    public Car getCarById(int id) {
+    public Car getCarById(int id, CarAccessInterface carAccess) {
 
-        CarSqlDataAccess dataConnection = new CarSqlDataAccess();
-        ResultSet carSet = dataConnection.getCar(id);
+        ResultSet carSet = carAccess.getCar(id);
 
         try{
             carSet.next();
-            CarDirector carBuilder = new CarDirector(carSet);
+            SvcCarDirector carBuilder = new SvcCarDirector(carSet);
             return carBuilder.makeCarEntity();
         } catch (SQLException e) {
             System.out.println("Failed to find car with that ID");

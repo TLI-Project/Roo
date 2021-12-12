@@ -1,6 +1,6 @@
-package controllers;
+package services;
 
-public class CreditScoreController {
+public class SvcGetCreditScore {
 
     /**
      * Connect to the Credit Score "API" in order to take user's information and get a credit score between 400-800.
