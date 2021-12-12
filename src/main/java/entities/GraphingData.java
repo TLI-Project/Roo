@@ -1,7 +1,7 @@
 package entities;
 
-import usecases.CreditScoreAdapter;
-import controllers.CreditScoreController;
+import services.SvcCreditScoreAdapter;
+import services.SvcGetCreditScore;
 
 /**
  * GraphingData is all the information needed to send to the Credit Score "API" and the Senso API.
@@ -36,20 +36,20 @@ public class GraphingData {
         this.sinNumber = sinNumber;
     }
 
-    /**
-     * @return the credit score given the user inputted data.
-     */
-    public int getCreditScore(){
-
-        // Adapt the User's inputted information to fit the credit score API body
-        CreditScoreAdapter creditDataAdapter = new CreditScoreAdapter(address, postalCode, city,
-                province, dateOfBirth, sinNumber);
-        String creditInputJson = creditDataAdapter.creditReadyData();
-
-        // Call the credit score "API" and return its result
-        CreditScoreController csc = new CreditScoreController();
-        return csc.pingCreditScoreAPI(creditInputJson);
-    }
+//    /**
+//     * @return the credit score given the user inputted data.
+//     */
+//    public int getCreditScore(){
+//
+//        // Adapt the User's inputted information to fit the credit score API body
+//        SvcCreditScoreAdapter creditDataAdapter = new SvcCreditScoreAdapter(address, postalCode, city,
+//                province, dateOfBirth, sinNumber);
+//        String creditInputJson = creditDataAdapter.creditReadyData();
+//
+//        // Call the credit score "API" and return its result
+//        SvcGetCreditScore csc = new SvcGetCreditScore();
+//        return csc.pingCreditScoreAPI(creditInputJson);
+//    }
 
     /**
      * @return the user loan amount.
@@ -81,4 +81,27 @@ public class GraphingData {
         return carId;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public int getSinNumber() {
+        return sinNumber;
+    }
 }
