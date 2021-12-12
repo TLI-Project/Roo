@@ -1,4 +1,4 @@
-package usecases;
+package services;
 
 import entities.Car;
 import entities.GraphingData;
@@ -12,7 +12,7 @@ import java.net.http.HttpResponse;
 /**
  * Compatible with SensoJSONs
  */
-public class SensoReadyInfo {
+public class SvcSensoReadyInfo {
 
     /**
      * @param inputData is the data the user inputted from the frontend.
@@ -21,11 +21,11 @@ public class SensoReadyInfo {
     public static String userCarLoanRequest(GraphingData inputData) throws IOException, InterruptedException {
 
         // get the user's chosen car
-        CarDataProcess dbConn = new CarDataProcess();
-        Car car = dbConn.getCarById(inputData.getCarId());
+        int carId = inputData.getCarId();
+        Car car = svcCarDataProcess.getCarById(carId, carAccessInterface);
 
         // convert the inputData to the proper JSON body for the Senso API
-        GraphingDataAdapter inputDataAdapter = new GraphingDataAdapter(car, inputData);
+        SvcGraphingDataAdapter inputDataAdapter = new SvcGraphingDataAdapter(car, inputData, svcCreditScoreAdapter);
         String sensoReadyBody = inputDataAdapter.sensoReadyData();
 
         // format the loan request for the Senso API call
@@ -42,6 +42,5 @@ public class SensoReadyInfo {
         System.out.println(response.statusCode());
 
         return response.body();
-
     }
 }

@@ -1,5 +1,4 @@
-package usecases;
-
+package services;
 
 import entities.Car;
 import entities.Feature;
@@ -12,24 +11,23 @@ import java.util.HashMap;
 /**
  * Builder design pattern director for creating cars from the database.
  */
-public class CarDirector {
+public class SvcCarDirector {
 
     private final ResultSet carSet;
-    private final CarFeatureBuilder b;
+    private final SvcCarFeatureBuilder svcCarFeatureBuilder;
 
     /**
      * Initialize the director for the CarBuilder.
      * @param cs is the result set from the database.
      */
-    public CarDirector(ResultSet cs){
+    public SvcCarDirector(ResultSet cs){
         this.carSet = cs;
-        this.b = new CarFeatureBuilder();
+        this.svcCarFeatureBuilder = new SvcCarFeatureBuilder();
     }
 
     /**
      * Build a car entity.
      * @return the Car object of the given car.
-     * @throws SQLException e
      */
     public Car makeCarEntity() throws SQLException {
         ArrayList<Double> depreciation = buildCarDepreciation();
@@ -42,8 +40,8 @@ public class CarDirector {
      */
     private ArrayList<Double> buildCarDepreciation() throws SQLException {
 
-        b.buildDepreciation(carSet);
-        return b.getDepreciation();
+        svcCarFeatureBuilder.buildDepreciation(carSet);
+        return svcCarFeatureBuilder.getDepreciation();
     }
 
     /**
@@ -51,15 +49,15 @@ public class CarDirector {
      */
     private HashMap<String, Feature> buildCarFeatures() throws SQLException {
 
-        b.buildInterior(carSet.getString("interior"),
+        svcCarFeatureBuilder.buildInterior(carSet.getString("interior"),
                 carSet.getString("interiorDescription"));
 
-        b.buildEngine(carSet.getString("engine"),
+        svcCarFeatureBuilder.buildEngine(carSet.getString("engine"),
                 carSet.getString("engineDescription"));
 
-        b.buildPerformancePackage(carSet.getString("performancePackage"),
+        svcCarFeatureBuilder.buildPerformancePackage(carSet.getString("performancePackage"),
                 carSet.getString("performancePackageDescription"));
 
-        return b.getFeatureSet();
+        return svcCarFeatureBuilder.getFeatureSet();
     }
 }

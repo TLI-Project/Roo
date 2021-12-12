@@ -1,11 +1,12 @@
-package usecases;
+package services;
 
-import interfaces.CreditScoreJsonInterface;
+
+import entities.GraphingData;
 
 /**
  * Adapt user information to the credit score.
  */
-public class CreditScoreAdapter implements CreditScoreJsonInterface {
+public class SvcCreditScoreAdapter {
     private final String address;
     private final String postalCode;
     private final String city;
@@ -15,21 +16,14 @@ public class CreditScoreAdapter implements CreditScoreJsonInterface {
 
     /**
      * Initialize the Credit Score Adapter for the credit score API body.
-     * @param address is the user's address.
-     * @param postalCode is the user's postal code.
-     * @param city is the user's city they are residing in.
-     * @param province is the province the user lives in.
-     * @param dateOfBirth is the date of birth of the user.
-     * @param sinNumber is the social insurance number of the user.
      */
-    public CreditScoreAdapter(String address, String postalCode, String city, String province,
-                              String dateOfBirth, int sinNumber){
-        this.address = address;
-        this.postalCode = postalCode;
-        this.city = city;
-        this.province = province;
-        this.dateOfBirth = dateOfBirth;
-        this.sinNumber = sinNumber;
+    public SvcCreditScoreAdapter(GraphingData graphingData){
+        this.address = graphingData.getAddress();
+        this.postalCode = graphingData.getPostalCode();
+        this.city = graphingData.getCity();
+        this.province = graphingData.getProvince();
+        this.dateOfBirth = graphingData.getDateOfBirth();
+        this.sinNumber = graphingData.getSinNumber();
     }
 
     /**
