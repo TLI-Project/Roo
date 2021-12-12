@@ -23,10 +23,10 @@ public class CarAccessSql implements CarAccessInterface {
             statement.execute("USE auto_education");
 
             String getCar = "SELECT * FROM car WHERE car_id = " + id;
-            ResultSet test = statement.executeQuery(getCar);
-            if(test.next()){
-                System.out.println(test.getString("make"));
-            }
+//            ResultSet test = statement.executeQuery(getCar);
+//            if(test.next()){
+//                System.out.println(test.getString("make"));
+//            }
             return statement.executeQuery(getCar);
         } catch (SQLException e) {
             System.out.println("Failed to get car");
