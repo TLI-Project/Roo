@@ -9,6 +9,7 @@ import usecases.CarToJsonRequestAdapter;
 import usecases.SensoReadyInfo;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -71,8 +72,19 @@ public class CarDataController {
     public String carDepreciation(@RequestBody int id) {
         CarDataProcess carController = new CarDataProcess();
         Car car = carController.getCarById(id);
+        return jsonCarDepreciation(id, car.getDepreciation());
+    }
+
+    /**
+     * HELPER: make a JSON representation of car depreciation for the frontend.
+     * @param id is the ID of the car
+     * @param depreciation is the depreciation of the car
+     * @return a JSON representation of the car's depreciation
+     */
+    private String jsonCarDepreciation(int id, ArrayList<Double> depreciation) {
+        // could this be an adapter? I guess? Is that way overkill? Yes.
         return "{\n" +
-                "   \" " + id + " \": " + car.getDepreciation() + "\n" +
+                "   \" " + id + " \": " + depreciation + "\n" +
                 "}";
     }
 }
