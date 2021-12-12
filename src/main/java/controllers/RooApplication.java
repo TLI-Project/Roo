@@ -14,9 +14,16 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/**
+ * Centralized application
+ */
 @SpringBootApplication
 public class RooApplication {
 
+	/**
+	 * Runs and initializes the backend.
+	 * @param args the input
+	 */
 	public static void main(String[] args) throws SQLException, IOException {
 
 		// initialize the database

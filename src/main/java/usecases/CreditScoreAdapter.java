@@ -2,6 +2,9 @@ package usecases;
 
 import interfaces.CreditScoreJsonInterface;
 
+/**
+ * Adapt user information to the credit score.
+ */
 public class CreditScoreAdapter implements CreditScoreJsonInterface {
     private final String address;
     private final String postalCode;

@@ -2,17 +2,18 @@ package usecases;
 
 import entities.Car;
 import interfaces.CarToJsonInterface;
-import org.jetbrains.annotations.NotNull;
 
+/**
+ * Adapter a car into a json.
+ */
 public class CarToJsonRequestAdapter implements CarToJsonInterface {
 
+    /**
+     * @param car is the car you want to get a JSON representation of.
+     * @return a JSON representation of the given car.
+     */
     @Override
     public String getCarToJsonRepresentation(Car car) {
-        return getJsonFormattedCar(car);
-    }
-
-    @NotNull
-    private static String getJsonFormattedCar(Car car) {
         return "{\n" +
                 "   \"id\": " + car.getCarId() + ",\n" +
                 "   \"carModel\": \"" + car.getCarModel() + "\",\n" +
@@ -31,6 +32,5 @@ public class CarToJsonRequestAdapter implements CarToJsonInterface {
                 "   \"engineDescription\": \"" + car.getFeatures().get("engine").getDescription() + "\",\n" +
                 "   \"performancePackage\": \"" + car.getFeatures().get("performancePackage").getName() + "\",\n" +
                 "   \"performancePackageDescription\": \"" + car.getFeatures().get("performancePackage").getDescription() + "\"\n" +
-                "}";
-    }
+                "}";    }
 }

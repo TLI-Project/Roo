@@ -11,7 +11,6 @@ public interface CarBuilderInterface {
     /**
      * Create a list of the last 10 years of depreciation of a given car.
      * @param cs is the ResultSet entry from the database for the given car.
-     * @throws SQLException e
      */
     void buildDepreciation(ResultSet cs) throws SQLException;
 

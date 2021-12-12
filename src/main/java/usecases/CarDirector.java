@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Builder design pattern for creating cars from the database.
+ * Builder design pattern director for creating cars from the database.
  */
 public class CarDirector {
 
@@ -32,28 +32,24 @@ public class CarDirector {
      * @throws SQLException e
      */
     public Car makeCarEntity() throws SQLException {
-        ArrayList<Double> depreciation = makeCarDepreciation();
-        HashMap<String, Feature> featureSet = makeCarFeatures();
+        ArrayList<Double> depreciation = buildCarDepreciation();
+        HashMap<String, Feature> featureSet = buildCarFeatures();
         return new Car(carSet, featureSet, depreciation);
     }
 
     /**
-     *
-     * @return
-     * @throws SQLException
+     * @return the newly built depreciation of the car.
      */
-    private ArrayList<Double> makeCarDepreciation() throws SQLException {
+    private ArrayList<Double> buildCarDepreciation() throws SQLException {
 
         b.buildDepreciation(carSet);
         return b.getDepreciation();
     }
 
     /**
-     *
-     * @return
-     * @throws SQLException
+     * @return the newly built set of features of the car (interior, engine, performancePackage)
      */
-    private HashMap<String, Feature> makeCarFeatures() throws SQLException {
+    private HashMap<String, Feature> buildCarFeatures() throws SQLException {
 
         b.buildInterior(carSet.getString("interior"),
                 carSet.getString("interiorDescription"));

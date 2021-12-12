@@ -9,13 +9,12 @@ import java.sql.ResultSet;
 public interface CarAccessInterface {
 
     /**
-     * Iterare through the car dataset and return all cars
-     * @return a list of Car objects from the dataset by ID
+     * @return a Car object from the dataset by ID
      */
     ResultSet getCar(int id);
 
     /**
-     * @return the Car entity representation of the car.
+     * @return the Car entity representation of each car.
      */
     ResultSet getAllCars();
 }

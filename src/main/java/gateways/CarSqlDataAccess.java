@@ -7,7 +7,7 @@ import java.sql.*;
 import static constants.DatabaseConstants.*;
 
 /**
- *
+ * The gateway between the database and the backend.
  */
 public class CarSqlDataAccess implements CarAccessInterface {
 
@@ -35,8 +35,8 @@ public class CarSqlDataAccess implements CarAccessInterface {
     }
 
     /**
-     * Talk with the database to get all of the cars in the database.
-     * @return a representtation of all teh cars in teh database.
+     * Talk with the database to get all the cars in the database.
+     * @return a representation of all teh cars in teh database.
      */
     public ResultSet getAllCars() {
         try {

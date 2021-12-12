@@ -19,6 +19,9 @@ public class GraphingData {
     private final String dateOfBirth;
     private final int sinNumber;
 
+    /**
+     * Initialize a GraphingData data set with all the users inputted information from the frontend.
+     */
     public GraphingData(Integer carId, Double loanAmount, Double pytBudget, Double downPayment, String address,
                         String postalCode, String city, String province, String dateOfBirth, Integer sinNumber){
         this.carId = carId;
@@ -48,18 +51,32 @@ public class GraphingData {
         return csc.pingCreditScoreAPI(creditInputJson);
     }
 
+    /**
+     * @return the user loan amount.
+     */
     public double getLoanAmount(){
+        // could probably calculate this later if we added together the list price of the car, price of each feature,
+        // and subtracted their downpayment.
         return this.loanAmount;
     }
 
+    /**
+     * @return the user paymeny budget.
+     */
     public double getPytBudget(){
         return this.pytBudget;
     }
 
+    /**
+     * @return the user's downpayment
+     */
     public double getDownpayment(){
         return this.downpayment;
     }
 
+    /**
+     * @return the car ID for this graphing data set.
+     */
     public int getCarId(){
         return carId;
     }

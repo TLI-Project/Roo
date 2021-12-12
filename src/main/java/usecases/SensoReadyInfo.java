@@ -13,6 +13,11 @@ import java.net.http.HttpResponse;
  * Compatible with SensoJSONs
  */
 public class SensoReadyInfo {
+
+    /**
+     * @param inputData is the data the user inputted from the frontend.
+     * @return the Senso API response.
+     */
     public static String userCarLoanRequest(GraphingData inputData) throws IOException, InterruptedException {
 
         // get the user's chosen car
