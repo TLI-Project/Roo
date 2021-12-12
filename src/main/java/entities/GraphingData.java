@@ -25,7 +25,6 @@ public class GraphingData {
     public GraphingData(Integer carId, Double pytBudget, Double downPayment, String address,
                         String postalCode, String city, String province, String dateOfBirth, Integer sinNumber){
         this.carId = carId;
-//        this.loanAmount = loanAmount;
         this.pytBudget = pytBudget;
         this.downpayment = downPayment;
         this.address = address;
@@ -35,30 +34,6 @@ public class GraphingData {
         this.dateOfBirth = dateOfBirth;
         this.sinNumber = sinNumber;
     }
-
-//    /**
-//     * @return the credit score given the user inputted data.
-//     */
-//    public int getCreditScore(){
-//
-//        // Adapt the User's inputted information to fit the credit score API body
-//        SvcCreditScoreAdapter creditDataAdapter = new SvcCreditScoreAdapter(address, postalCode, city,
-//                province, dateOfBirth, sinNumber);
-//        String creditInputJson = creditDataAdapter.creditReadyData();
-//
-//        // Call the credit score "API" and return its result
-//        SvcGetCreditScore csc = new SvcGetCreditScore();
-//        return csc.pingCreditScoreAPI(creditInputJson);
-//    }
-
-//    /**
-//     * @return the user loan amount.
-//     */
-//    public double getLoanAmount(){
-//        // could probably calculate this later if we added together the list price of the car, price of each feature,
-//        // and subtracted their downpayment.
-//        return this.loanAmount;
-//    }
 
     /**
      * @return the user paymeny budget.
