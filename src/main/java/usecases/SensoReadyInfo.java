@@ -30,7 +30,7 @@ public class SensoReadyInfo {
 
         // format the loan request for the Senso API call
         var loanRequest = HttpRequest.newBuilder()
-                .uri(URI.create(System.getenv("SENSO_URL")))
+                .uri(URI.create("https://auto-loan-api.senso.ai/rate"))
                 .header("Content-Type", "application/json")
                 .header("x-api-key", System.getenv("SENSO_KEY"))
                 .POST(HttpRequest.BodyPublishers.ofString(sensoReadyBody))
