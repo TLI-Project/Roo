@@ -21,7 +21,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -36,6 +35,9 @@ public class RooApplication {
 	// Use Case
 	private final SvcCarDataProcess svcCarDataProcess;
 	private final SvcCarToJsonRequestAdapter svcCarToJsonRequestAdapter;
+	private final SvcCarMetaData svcCarMetaData;
+	private final SvcCarDetails svcCarDetails;
+	private final SvcCarDepreciation svcCarDepreciation;
 
 
 	/**
@@ -54,6 +56,9 @@ public class RooApplication {
 			// Set Use Cases
 			svcCarDataProcess = new SvcCarDataProcess();
 			svcCarToJsonRequestAdapter = new SvcCarToJsonRequestAdapter();
+			svcCarMetaData = new SvcCarMetaData();
+			svcCarDetails = new SvcCarDetails();
+			svcCarDepreciation = new SvcCarDepreciation();
 	} catch (SQLException | IOException e) {
 			e.printStackTrace();
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "failed to initialize");
@@ -73,11 +78,7 @@ public class RooApplication {
 	 */
 	@PostMapping("/carMetaData")
 	public HashMap<Integer, String> carMetaData() {
-		HashMap<Integer, String> allCarMetaData = new HashMap<>();
-		for (Car car : svcCarDataProcess.getAllCars(carAccessInterface)) {
-			allCarMetaData.put(car.getCarId(), svcCarToJsonRequestAdapter.getCarToJsonRepresentation(car));
-		}
-		return allCarMetaData;
+		return svcCarMetaData.getMetaData(svcCarDataProcess, svcCarToJsonRequestAdapter, carAccessInterface);
 	}
 
 	/**
@@ -87,8 +88,7 @@ public class RooApplication {
 	 */
 	@PostMapping("/carDetails")
 	public String carDetails(@RequestBody int id) {
-		Car car = svcCarDataProcess.getCarById(id, carAccessInterface);
-		return svcCarToJsonRequestAdapter.getCarToJsonRepresentation(car);
+		return svcCarDetails.getCarDetails(id, svcCarDataProcess, carAccessInterface, svcCarToJsonRequestAdapter);
 	}
 
 	/**
@@ -98,11 +98,7 @@ public class RooApplication {
 	 */
 	@PostMapping(value = "/userCarLoan", consumes = "application/json", produces = "application/json")
 	public String userCarLoan(@RequestBody GraphingData inputData) throws IOException, InterruptedException {
-		return SvcSensoReadyInfo.userCarLoanRequest(
-				inputData,
-				carAccessInterface,
-				svcCarDataProcess
-		);
+		return SvcSensoReadyInfo.userCarLoanRequest(inputData, carAccessInterface, svcCarDataProcess);
 	}
 	/**
 	 * Get a given car's depreciation schedule over the next 10 years.
@@ -111,21 +107,7 @@ public class RooApplication {
 	 */
 	@PostMapping("/carDepreciation")
 	public String carDepreciation(@RequestBody int id) {
-		Car car = svcCarDataProcess.getCarById(id, carAccessInterface);
-		return jsonCarDepreciation(id, car.getDepreciation());
-	}
-
-	/**
-	 * HELPER: make a JSON representation of car depreciation for the frontend.
-	 * @param id is the ID of the car
-	 * @param depreciation is the depreciation of the car
-	 * @return a JSON representation of the car's depreciation
-	 */
-	private String jsonCarDepreciation(int id, ArrayList<Double> depreciation) {
-		// could this be an adapter? I guess? Is that way overkill? Yes.
-		return "{\n" +
-				"   \" " + id + " \": " + depreciation + "\n" +
-				"}";
+		return svcCarDepreciation.getCarDepreciation(id, svcCarDataProcess, carAccessInterface);
 	}
 
 	/**
