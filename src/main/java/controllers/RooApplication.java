@@ -9,6 +9,7 @@ import interfaces.*;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.http.HttpStatus;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,22 +25,45 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * Centralized application
+ * Class with endpoints that frontend will call.
  */
 @SpringBootApplication
+@RestController
 public class RooApplication {
+	// Frameworks & Drivers
+	private final CarAccessInterface carAccessInterface;
+
+	// Use Case
+	private final SvcCarDataProcess svcCarDataProcess;
+	private final SvcCarToJsonRequestAdapter svcCarToJsonRequestAdapter;
+
+
+	/**
+	 * Following Dependency Injection.
+	 */
+	public RooApplication() {
+		try {
+			// Initialize the database
+			Connection conn = DatabaseConnection.conn();
+			InitDatabase.main(conn);
+			conn.close();
+
+			// Set Frameworks & Drivers
+			carAccessInterface = new CarAccessSql();
+
+			// Set Use Cases
+			svcCarDataProcess = new SvcCarDataProcess();
+			svcCarToJsonRequestAdapter = new SvcCarToJsonRequestAdapter();
+	} catch (SQLException | IOException e) {
+			e.printStackTrace();
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "failed to initialize");
+		}
+	}
 
 	/**
 	 * Runs and initializes the backend.
 	 */
-	public static void main(String[] args) throws SQLException, IOException {
-
-		// initialize the database
-		Connection conn = DatabaseConnection.conn();
-		InitDatabase.main(conn);
-		conn.close();
-
-		// run the main application
+	public static void main(String[] args) {
 		SpringApplication.run(RooApplication.class, args);
 	}
 

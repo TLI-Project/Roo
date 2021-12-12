@@ -9,7 +9,7 @@ import static constants.DatabaseConstants.*;
 /**
  * The gateway between the database and the backend.
  */
-public class CarSqlDataAccess implements CarAccessInterface {
+public class CarAccessSql implements CarAccessInterface {
 
     /**
      * Talk with the database to find the correct car.

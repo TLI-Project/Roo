@@ -2,6 +2,7 @@ package services;
 
 import entities.Car;
 import entities.GraphingData;
+import interfaces.CarAccessInterface;
 
 import java.io.IOException;
 import java.net.URI;
@@ -15,10 +16,16 @@ import java.net.http.HttpResponse;
 public class SvcSensoReadyInfo {
 
     /**
+     * Returns the Senso API response given the data the user inputted from the frontend.
      * @param inputData is the data the user inputted from the frontend.
      * @return the Senso API response.
      */
-    public static String userCarLoanRequest(GraphingData inputData) throws IOException, InterruptedException {
+    public static String userCarLoanRequest(
+            GraphingData inputData,
+            CarAccessInterface carAccessInterface,
+            SvcCarDataProcess svcCarDataProcess
+    ) throws IOException, InterruptedException {
+        SvcCreditScoreAdapter svcCreditScoreAdapter = new SvcCreditScoreAdapter(inputData);
 
         // get the user's chosen car
         int carId = inputData.getCarId();

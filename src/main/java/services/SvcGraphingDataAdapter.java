@@ -10,9 +10,10 @@ public class SvcGraphingDataAdapter {
     private final GraphingData graphingData;
     private final Car chosenCar;
     private final int creditScore;
+    private final double loanAmount;
 
     /**
-     * Iitialize the GraphinDataAdapter with the required information
+     * Initialize the GraphingDataAdapter with the required information
      * @param car is the car we are trying to get loan data for.
      * @param data is the user's financial inputs.
      */
@@ -23,6 +24,10 @@ public class SvcGraphingDataAdapter {
         SvcGetCreditScore svcGetCreditScore = new SvcGetCreditScore();
         String creditScoreApiInputs = svcCreditScoreAdapter.creditReadyData();
         this.creditScore = svcGetCreditScore.pingCreditScoreAPI(creditScoreApiInputs);
+        // Get loan amount.
+        this.loanAmount = chosenCar.getListPrice() - graphingData.getDownpayment();
+
+
     }
 
     /**
@@ -30,7 +35,7 @@ public class SvcGraphingDataAdapter {
      */
     public String sensoReadyData() {
         return "{\n" +
-                "   \"loanAmount\": " + graphingData.getLoanAmount() + ",\n" +
+                "   \"loanAmount\": " + loanAmount + ",\n" +
                 "   \"creditScore\": " + creditScore + ",\n" +
                 "   \"pytBudget\": " + graphingData.getPytBudget() + ",\n" +
                 "   \"vehicleMake\": \"" + chosenCar.getCarMake() + "\",\n" +
@@ -40,8 +45,5 @@ public class SvcGraphingDataAdapter {
                 "   \"listPrice\": " + chosenCar.getListPrice() + ",\n" +
                 "   \"downpayment\": " + graphingData.getDownpayment() + "\n" +
                 "}";
-
     }
-
-
 }
