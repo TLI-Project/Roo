@@ -9,7 +9,7 @@ import services.SvcGetCreditScore;
  */
 public class GraphingData {
     private final int carId;
-    private final double loanAmount;
+//    private final double loanAmount;
     private final double pytBudget;
     private final double downpayment;
     private final String address;
@@ -22,10 +22,10 @@ public class GraphingData {
     /**
      * Initialize a GraphingData data set with all the users inputted information from the frontend.
      */
-    public GraphingData(Integer carId, Double loanAmount, Double pytBudget, Double downPayment, String address,
+    public GraphingData(Integer carId, Double pytBudget, Double downPayment, String address,
                         String postalCode, String city, String province, String dateOfBirth, Integer sinNumber){
         this.carId = carId;
-        this.loanAmount = loanAmount;
+//        this.loanAmount = loanAmount;
         this.pytBudget = pytBudget;
         this.downpayment = downPayment;
         this.address = address;
@@ -51,14 +51,14 @@ public class GraphingData {
 //        return csc.pingCreditScoreAPI(creditInputJson);
 //    }
 
-    /**
-     * @return the user loan amount.
-     */
-    public double getLoanAmount(){
-        // could probably calculate this later if we added together the list price of the car, price of each feature,
-        // and subtracted their downpayment.
-        return this.loanAmount;
-    }
+//    /**
+//     * @return the user loan amount.
+//     */
+//    public double getLoanAmount(){
+//        // could probably calculate this later if we added together the list price of the car, price of each feature,
+//        // and subtracted their downpayment.
+//        return this.loanAmount;
+//    }
 
     /**
      * @return the user paymeny budget.
