@@ -42,6 +42,5 @@ public class SensoReadyInfo {
         System.out.println(response.statusCode());
 
         return response.body();
-
     }
 }
