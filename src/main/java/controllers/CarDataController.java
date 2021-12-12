@@ -1,6 +1,7 @@
 package controllers;
 
 import entities.GraphingData;
+import interfaces.CarToJsonInterface;
 import usecases.CarDataProcess;
 import entities.Car;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +26,9 @@ public class CarDataController {
     public HashMap<Integer, String> carMetaData() {
         CarDataProcess carController = new CarDataProcess();
         HashMap<Integer, String> allCarMetaData = new HashMap<>();
+        CarToJsonInterface carToJson = new CarToJsonRequestAdapter();
         for (Car car : carController.getAllCars()) {
-            allCarMetaData.put(car.getCarId(), CarToJsonRequestAdapter.getJsonFormattedCar(car));
+            allCarMetaData.put(car.getCarId(), carToJson.getCarToJsonRepresentation(car));
         }
         return allCarMetaData;
     }
@@ -41,7 +43,8 @@ public class CarDataController {
     public String carDetails(@RequestBody int id) {
         CarDataProcess carController = new CarDataProcess();
         Car car = carController.getCarById(id);
-        return CarToJsonRequestAdapter.getJsonFormattedCar(car);
+        CarToJsonInterface carToJson = new CarToJsonRequestAdapter();
+        return carToJson.getCarToJsonRepresentation(car);
     }
 
     /**

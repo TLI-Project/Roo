@@ -12,7 +12,7 @@ public class CarToJsonRequestAdapter implements CarToJsonInterface {
     }
 
     @NotNull
-    public static String getJsonFormattedCar(Car car) {
+    private static String getJsonFormattedCar(Car car) {
         return "{\n" +
                 "   \"id\": " + car.getCarId() + ",\n" +
                 "   \"carModel\": \"" + car.getCarModel() + "\",\n" +
